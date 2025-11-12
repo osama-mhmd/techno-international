@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import localFont from "next/font/local";
+
+const oswald = localFont({
+  src: "../assets/fonts/oswald.ttf",
+  variable: "--oswald",
+});
+const manrope = localFont({
+  src: "../assets/fonts/manrope.ttf",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${oswald.variable} ${manrope.className}`}>
+        {children}
+      </body>
     </html>
   );
 }

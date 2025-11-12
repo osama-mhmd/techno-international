@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "type": "CommmonJS",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon ./src/server.ts",
+    "build": "tsc",
+    "start": "node ./dist/src/server.js --env-file=./.env",
+    "lint": "eslint --max-warnings 0",
+    "check-types": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.63.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "payload": "^3.63.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/express": "^5.0.5",
+    "@types/node": "^22.15.3",
+    "eslint": "^9.39.1",
+    "typescript": "5.9.2",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2"
+  }
+}

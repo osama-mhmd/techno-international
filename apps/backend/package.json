@@ -11,10 +11,8 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "^3.63.0",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "payload": "^3.63.0"
+    "express": "^5.1.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -22,8 +20,8 @@
     "@types/express": "^5.0.5",
     "@types/node": "^22.15.3",
     "eslint": "^9.39.1",
-    "typescript": "5.9.2",
     "nodemon": "^3.1.11",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "5.9.2"
   }
 }

@@ -1,4 +1,5 @@
 import { Button } from "../components/ui/button";
+import Services from "./services";
 
 export default function Home() {
   return (
@@ -6,7 +7,8 @@ export default function Home() {
       <div className="bg-[url(/landing-page.png)] bg-cover bg-black/25 py-16 bg-blend-multiply">
         <div className="container h-screen flex flex-col justify-center mx-auto items-start gap-4 max-w-6xl">
           <h1>
-            GLOBAL LEADERS IN <br />
+            GLOBAL LEADERS IN
+            <br />
             DEFENSE & SECURITY SOLUTIONS
           </h1>
           <p className="text-2xl max-w-[40ch]">
@@ -19,7 +21,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <div className="container mx-auto flex flex-col gap-12 py-16">
+        <div className="container mx-auto flex flex-col gap-12 pt-16 pb-32">
           <hr />
           <div className="grid grid-cols-[40%_60%]">
             <p className="text-secondary text-[1.25rem] text-center">
@@ -45,6 +47,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Services />
     </main>
   );
 }

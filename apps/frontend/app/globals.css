@@ -5,11 +5,14 @@
     @apply text-white bg-black;
   }
   h1 {
-    font-family: var(--oswald);
-    @apply text-7xl;
+    @apply text-7xl font-oswald;
+  }
+  h2 {
+    @apply text-5xl font-oswald;
   }
 }
 
 @theme {
   --color-secondary: #c3996c;
+  --font-oswald: var(--font-oswald);
 }

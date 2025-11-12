@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 
 const oswald = localFont({
   src: "../assets/fonts/oswald.ttf",
-  variable: "--oswald",
+  variable: "--font-oswald",
 });
 const manrope = localFont({
   src: "../assets/fonts/manrope.ttf",

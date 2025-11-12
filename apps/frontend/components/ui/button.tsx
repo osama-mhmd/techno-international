@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-black",
-        destructive: "bg--destructive/90",
+        outline: "border border-white",
       },
       arrow: {
         default: "",

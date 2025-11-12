@@ -9,3 +9,7 @@
     @apply text-7xl;
   }
 }
+
+@theme {
+  --color-secondary: #c3996c;
+}

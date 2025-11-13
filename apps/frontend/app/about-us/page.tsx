@@ -10,7 +10,7 @@ export default function AboutUs() {
           <p className="text-2xl text-secondary uppercase">{"//"}About us</p>
         </div>
       </div>
-      <div className="bg-[url(/about-us-2nd-section.png)] bg-cover pt-20 pb-40 text-black">
+      <div className="bg-[url(/about-us-2nd-section.png)] bg-cover brightness-110 bg-left pt-20 pb-40 text-black">
         <div className="container">
           <h1>
             GLOBAL LEADERS IN
@@ -26,7 +26,7 @@ export default function AboutUs() {
           </p>
           <div className="grid grid-cols-2 mt-24 gap-6">
             <div>
-              <div className="w-full max-w-2xl h-192 relative bg-[url(/flag.png)] bg-cover bg-center"></div>
+              <div className="w-full max-w-2xl h-192 relative bg-[url(/flag.png)] bg-2 bg-bottom bg-size-[225%]"></div>
             </div>
             <div>
               <p className="text-3xl font-medium mb-14">

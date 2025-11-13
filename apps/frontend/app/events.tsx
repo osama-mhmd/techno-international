@@ -4,7 +4,7 @@ export default function Events() {
   return (
     <div className="bg-[#F1F2F2] text-black bg-[repeating-linear-gradient(to_right,#e5e5e5_0_1px,transparent_1px_415px)]">
       <div className="container pt-32">
-        <span className="text-sm text-[#C3996C] uppercase leading-0">
+        <span className="text-sm text-secondary uppercase leading-0">
           {"//"}Media centre
         </span>
         <p className="text-xl mb-8 uppercase">Industry events</p>
@@ -59,7 +59,7 @@ export default function Events() {
           reaffirms its commitment to powering global defense and regional
           readiness.
         </p>
-        <p className="text-4xl text-[#C3996C] underline">
+        <p className="text-4xl text-secondary underline">
           VISIT US AT
           <br />
           BOOTH 14 - HALL 3
@@ -87,7 +87,7 @@ function Event({
       <div className="flex flex-col justify-between mb-8">
         <div>
           <p className="text-lg font-bold">{title}</p>
-          <p className="text-[#808285] font-medium max-w-sm pt-3 pb-2">
+          <p className="text-muted font-medium max-w-sm pt-3 pb-2">
             {description}
           </p>
           <Image

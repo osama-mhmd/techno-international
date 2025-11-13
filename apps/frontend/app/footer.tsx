@@ -9,7 +9,7 @@ export default function Footer() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <p className="font-bold text-[1.75rem] text-[#808285] pb-5">Contact</p>
+      <p className="font-bold text-[1.75rem] text-muted pb-5">Contact</p>
       <p className="text-4xl font-oswald">
         LET’S SHAPE THE FUTURE
         <br />

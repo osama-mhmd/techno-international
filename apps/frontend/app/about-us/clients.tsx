@@ -62,15 +62,13 @@ interface ClientProps {
 
 function Client({ name, className, children, expanded }: ClientProps) {
   return (
-    <li
-      className={cn("py-4 border-b border-[#808285] cursor-pointer", className)}
-    >
+    <li className={cn("py-4 border-b border-muted cursor-pointer", className)}>
       <div className="flex gap-4 items-center font-oswald uppercase text-2xl">
         {expanded ? <MinusSign /> : <PlusSign />}
         {name}
       </div>
       {expanded && (
-        <div className="text-[#808285] text-xl py-8 flex flex-col gap-7 ps-14">
+        <div className="text-muted text-xl py-8 flex flex-col gap-7 ps-14">
           {children}
         </div>
       )}

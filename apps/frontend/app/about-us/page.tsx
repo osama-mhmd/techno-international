@@ -128,6 +128,46 @@ export default function AboutUs() {
         </div>
         <div className="relative bg-[url(/global-presence-2.png)] bg-cover"></div>
       </div>
+      <div>
+        <div className="container pt-24 pb-64">
+          <div className="flex justify-between gap-4">
+            <div>
+              <h1>
+                COMPLIANCE &<br />
+                QUALITY ASSURANCE
+              </h1>
+              <p className="font-medium text-3xl pt-5 max-w-2xl">
+                We operate with unwavering transparency and accountability.
+                Techno International Group strictly adheres to international
+                arms regulations including ITAR, EAR, and UN export control
+                laws.
+              </p>
+            </div>
+            <div>
+              <Image width={150} height={150} alt="Logo" src="/full-logo.png" />
+            </div>
+          </div>
+          <hr className="my-16 border-muted" />
+          <div className="grid grid-cols-2 gap-6">
+            <Image
+              width={860}
+              height={490}
+              alt="A photo of a solider explaining the mission for the team"
+              src="/compliance-and-quality-assurance.png"
+            />
+            <div className="flex flex-col justify-between items-start">
+              <p className="text-3xl font-medium">
+                Our products and services meet global military standards such as
+                MIL-STD, STANAG, and GOST, ensuring safety, reliability, and
+                operational excellence. Every solution undergoes rigorous
+                quality assurance processes, guaranteeing that our partners
+                receive only the highest level of performance.
+              </p>
+              <Button variant="outline">Download company profile</Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
@@ -154,7 +194,7 @@ function CoreValue({
   return (
     <div className="border-t max-w-80">
       <p className="text-3xl font-oswald pt-4 pb-2.5">{title}</p>
-      <p className="text-[#808285] font-medium text-2xl">{description}</p>
+      <p className="text-muted font-medium text-2xl">{description}</p>
     </div>
   );
 }

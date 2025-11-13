@@ -51,7 +51,11 @@ export default function Nav() {
         </ul>
         <ul className="flex gap-2">
           <li>EN</li>
-          <li className={`text-[${inAboutPage ? "#939598" : "#BCBEC0"}]`}>
+          <li
+            style={{
+              color: inAboutPage ? "#939598" : "#BCBEC0",
+            }}
+          >
             FR
           </li>
         </ul>

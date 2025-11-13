@@ -3,7 +3,7 @@ import { cn } from "../lib/utils";
 
 export default function Services() {
   return (
-    <div className="grid grid-cols-[20%_60%_20%] min-h-screen">
+    <div className="grid xl:grid-cols-[30%_40%_30%] 2xl:grid-cols-[20%_60%_20%] min-h-screen">
       <Service title="solutions">
         <p className="py-4 text-xl">PROVEN POWER. BATTLE-TESTED SOLUTIONS.</p>
         <AirLandSea />
@@ -15,7 +15,7 @@ export default function Services() {
             BUILT FROM PRECISION. <br />
             FORGED FOR PERFORMANCE.
           </p>
-          <p className="text-[1.35rem] max-w-prose">
+          <p className="text-[1.35rem] font-medium leading-6 max-w-prose">
             Techno Logistics ensures that every mission moves without
             hesitation. Through seamless coordination, global reach, and
             military-grade efficiency, we deliver equipment, maintenance, and
@@ -47,12 +47,12 @@ function Service({
         backgroundImage: `url(/services-${title}.png)`,
       }}
       className={cn(
-        `grid grid-rows-[auto_1fr] p-4 bg-black/35 bg-blend-multiply bg-center bg-cover`,
+        `grid grid-rows-[auto_1fr] p-9 bg-black/35 bg-blend-multiply bg-cover bg-center`,
         className
       )}
     >
       <ServiceHeader title={title} />
-      <div className="flex flex-col">
+      <div className="flex flex-col h-162 sm:h-132 xl:h-auto">
         <div className="h-full">{children}</div>
         <ServiceExpolre />
       </div>
@@ -84,9 +84,9 @@ function AirLandSea() {
 
 function ServiceExpolre() {
   return (
-    <div className="text-2xl flex items-center gap-4">
+    <button className="cursor-pointer text-2xl flex items-center gap-4">
       EXPLORE
       <ChevronRight size={35} />
-    </div>
+    </button>
   );
 }

@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 export default function Clients() {
   return (
     <div className="bg-[repeating-linear-gradient(to_right,#6D6E71_0_1px,transparent_1px_415px)]">
-      <div className="container grid grid-cols-2 py-20">
+      <div className="container grid md:grid-cols-2 px-8 py-20">
         <div>
           <h1>
             OUR CLIENTS
@@ -16,7 +16,7 @@ export default function Clients() {
             manufacturers to strengthen security worldwide.
           </p>
         </div>
-        <div className="pt-36">
+        <div className="pt-8 md:pt-36">
           <ul>
             <Client name="UK Ministry of defence" className="border-t" />
             <Client name="CÔTE D’IVOIRE MINISTRY OF DEFENCE" />

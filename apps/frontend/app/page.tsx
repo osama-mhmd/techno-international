@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main>
       <div className="bg-[url(/landing-page.png)] bg-cover bg-black/25 py-16 bg-blend-multiply">
-        <div className="container h-screen flex flex-col justify-center mx-auto items-start gap-4 max-w-6xl">
+        <div className="container px-8 h-screen flex flex-col justify-center mx-auto items-start gap-4 max-w-6xl">
           <h1>
             GLOBAL LEADERS IN
             <br />
@@ -23,14 +23,14 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <div className="container mx-auto flex flex-col gap-12 pt-16 pb-32">
+        <div className="container px-8 mx-auto flex flex-col gap-12 pt-16 pb-32">
           <hr />
-          <div className="grid grid-cols-[40%_60%]">
+          <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-[40%_60%]">
             <p className="text-secondary text-xl text-center">
               {"//"}DEFINING TECHNO
             </p>
             <div>
-              <p className="text-4xl">
+              <p className="text-3xl sm:text-4xl">
                 Techno International Group is a premier provider of defense and
                 security solutions, dedicated to enhancing national security and
                 operational readiness across the globe. With decades of
@@ -39,7 +39,7 @@ export default function Home() {
                 tailored to armed forces, law enforcement agencies, and
                 government institutions.
               </p>
-              <div className="flex gap-2 mt-6">
+              <div className="flex items-start flex-col md:flex-row gap-2 mt-6">
                 <Button variant="outline" arrow="has">
                   Explore
                 </Button>

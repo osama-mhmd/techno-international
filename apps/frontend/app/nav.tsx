@@ -16,7 +16,7 @@ export default function Nav() {
         "text-black": inAboutPage,
       })}
     >
-      <div className="max-w-6xl mx-auto flex justify-between px-4 py-8 items-center">
+      <div className="max-w-6xl mx-auto flex justify-between px-8 lg:px-4 py-8 items-center">
         <Link href="/">
           {inAboutPage ? (
             <Image width={68} height={68} alt="Logo" src="/full-logo.png" />
@@ -24,7 +24,7 @@ export default function Nav() {
             <Image width={68} height={68} alt="Logo" src="/partial-logo.png" />
           )}
         </Link>
-        <ul className="flex gap-6 *:flex *:items-center *:gap-2">
+        <ul className="hidden lg:flex gap-6 *:flex *:items-center *:gap-2">
           <li>
             <Link href="/about-us">About us</Link>
           </li>

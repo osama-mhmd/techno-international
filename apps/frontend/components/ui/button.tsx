@@ -5,7 +5,7 @@ import { cn } from "../../lib/utils";
 import ChevronRight from "../icons/chevron-right";
 
 const buttonVariants = cva(
-  "px-3 py-2 uppercase cursor-pointer inline-flex gap-2 items-center",
+  "px-3 py-2 uppercase cursor-pointer inline-flex gap-2 items-center ring-secondary focus:ring-2",
   {
     variants: {
       variant: {

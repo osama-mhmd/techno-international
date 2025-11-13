@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { Button } from "../../components/ui/button";
+import Clients from "./clients";
 
 export default function AboutUs() {
   return (
@@ -41,6 +43,48 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
+      <Clients />
+      <div className="grid grid-cols-2 bg-white text-black">
+        <OurVision>
+          To reinforce national defense capabilities by delivering
+          state-of-the-art military equipment, innovative security solutions,
+          and expert consultancy services that safeguard nations and support
+          mission success.
+        </OurVision>
+        <div className="relative h-[960px]">
+          <Image
+            fill
+            alt="Plane"
+            className="object-cover object-center"
+            src="/our-vision-1.png"
+          />
+        </div>
+        <div className="relative h-[960px]">
+          <Image
+            fill
+            alt="Plane"
+            className="object-cover object-right"
+            src="/our-vision-2.png"
+          />
+        </div>
+        <OurVision>
+          To be recognized as the world’s most trusted defense partner,
+          providing advanced solutions that empower military and law enforcement
+          agencies, while driving global stability and security.
+        </OurVision>
+      </div>
     </main>
+  );
+}
+
+function OurVision({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col justify-between p-24">
+      <div>
+        <h2 className="pb-5">OUR VISION</h2>
+        <Image width={68} height={68} alt="Logo" src="/full-logo-black.png" />
+      </div>
+      <p className="font-medium text-xl mt-5">{children}</p>
+    </div>
   );
 }

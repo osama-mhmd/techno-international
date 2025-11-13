@@ -100,6 +100,34 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
+      <div className="grid grid-cols-[20%_10%_70%] grid-rows-[780px]">
+        <div className="uppercase font-oswald text-center text-3xl p-16 bg-[url(/global-presence-1.png)] bg-cover bg-bottom">
+          Global presence
+        </div>
+        <div className="flex items-end justify-center bg-white p-6 py-8">
+          <svg
+            width="133"
+            height="133"
+            viewBox="0 0 133 133"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 5.2998H127.06V132.36"
+              stroke="#231F20"
+              strokeWidth="10.6"
+              strokeMiterlimit="10"
+            />
+            <path
+              d="M6.02051 126.34L127.061 5.2998"
+              stroke="#231F20"
+              strokeWidth="10.6"
+              strokeMiterlimit="10"
+            />
+          </svg>
+        </div>
+        <div className="relative bg-[url(/global-presence-2.png)] bg-cover"></div>
+      </div>
     </main>
   );
 }

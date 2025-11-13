@@ -10,10 +10,10 @@
     @apply uppercase font-oswald;
   }
   h1 {
-    @apply text-7xl;
+    @apply text-[4.25rem] sm:text-7xl;
   }
   h2 {
-    @apply text-5xl;
+    @apply text-4xl sm:text-5xl;
   }
   .container-left {
     @apply pl-4 w-full max-w-none;
@@ -21,27 +21,27 @@
 
   @media (min-width: 40rem) {
     .container-left {
-      padding-left: 2.5rem;
+      padding-left: 4.5rem;
     }
   }
   @media (min-width: 48rem) {
     .container-left {
-      padding-left: 3rem;
+      padding-left: 5rem;
     }
   }
   @media (min-width: 64rem) {
     .container-left {
-      padding-left: 4rem;
+      padding-left: 6rem;
     }
   }
   @media (min-width: 80rem) {
     .container-left {
-      padding-left: 5rem;
+      padding-left: 7rem;
     }
   }
   @media (min-width: 96rem) {
     .container-left {
-      padding-left: 6rem;
+      padding-left: 8rem;
     }
   }
 

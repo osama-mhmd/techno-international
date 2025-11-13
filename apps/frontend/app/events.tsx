@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Events() {
   return (
     <div className="bg-[#F1F2F2] text-black bg-[repeating-linear-gradient(to_right,#e5e5e5_0_1px,transparent_1px_415px)]">
-      <div className="container pt-32">
+      <div className="container px-8 pt-32">
         <span className="text-sm text-secondary uppercase leading-0">
           {"//"}Media centre
         </span>
@@ -35,7 +35,7 @@ export default function Events() {
           eventName="egypt-defence-expo-2021"
         />
       </div>
-      <div className="container pb-44">
+      <div className="container px-8 pb-44">
         <hr />
         <div className="flex pt-16 gap-4 font-oswald">
           <Image
@@ -47,7 +47,7 @@ export default function Events() {
           />
           <div>
             <p className="text-xl">LEADING THE FUTURE OF DEFENSE</p>
-            <p className="text-8xl mt-8">AT EDEX 2025.</p>
+            <p className="text-6xl sm:text-8xl mt-8">AT EDEX 2025.</p>
           </div>
         </div>
         <p className="text-4xl font-medium py-10 max-w-6xl">
@@ -83,7 +83,7 @@ function Event({
   logoOffset = true,
 }: EventProps) {
   return (
-    <div className="container-left grid grid-cols-2 mb-28">
+    <div className="container-left grid grid-cols-1 md:grid-cols-2 mb-28">
       <div className="flex flex-col justify-between mb-8">
         <div>
           <p className="text-lg font-bold">{title}</p>
@@ -98,7 +98,7 @@ function Event({
             className={logoOffset ? "-translate-x-2.5" : ""}
           />
         </div>
-        <p className="uppercase underline flex items-center gap-2 font-bold">
+        <p className="uppercase underline flex items-center gap-2 font-bold mt-8 lg:mt-0">
           <svg
             width="10"
             height="10"

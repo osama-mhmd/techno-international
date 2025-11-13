@@ -43,8 +43,11 @@ function Service({
 }) {
   return (
     <div
+      style={{
+        backgroundImage: `url(/services-${title}.png)`,
+      }}
       className={cn(
-        `grid grid-rows-[auto_1fr] bg-[url(/services-${title}.png)] p-4 bg-black/35 bg-blend-multiply bg-center bg-cover`,
+        `grid grid-rows-[auto_1fr] p-4 bg-black/35 bg-blend-multiply bg-center bg-cover`,
         className
       )}
     >
@@ -61,7 +64,7 @@ function ServiceHeader({ title }: { title: string }) {
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <h2 className="uppercase font-bold">{title}</h2>
+        <h2 className="font-bold">{title}</h2>
         <ChevronRight size={50} />
       </div>
       <hr />

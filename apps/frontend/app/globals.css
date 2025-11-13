@@ -4,11 +4,16 @@
   body {
     @apply text-white bg-black;
   }
+  h1,
+  h2,
+  h3 {
+    @apply uppercase font-oswald;
+  }
   h1 {
-    @apply text-7xl font-oswald;
+    @apply text-7xl;
   }
   h2 {
-    @apply text-5xl font-oswald;
+    @apply text-5xl;
   }
 }
 

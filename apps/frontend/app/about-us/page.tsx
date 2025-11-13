@@ -10,12 +10,12 @@ export default function AboutUs() {
   return (
     <main>
       <div className="bg-[url(/about-us.png)] h-[815px] bg-cover">
-        <div className="container flex items-end h-full py-10">
+        <div className="container px-8 flex items-end h-full py-10">
           <p className="text-2xl text-secondary uppercase">{"//"}About us</p>
         </div>
       </div>
       <div className="bg-[url(/about-us-2nd-section.png)] bg-cover brightness-110 bg-left pt-20 pb-40 text-black">
-        <div className="container">
+        <div className="container px-8">
           <h1>
             GLOBAL LEADERS IN
             <br />
@@ -28,12 +28,12 @@ export default function AboutUs() {
             products — we deliver confidence, resilience, and innovation that
             empower nations to protect their sovereignty and citizens.
           </p>
-          <div className="grid grid-cols-2 mt-24 gap-6">
+          <div className="grid md:grid-cols-2 mt-24 gap-6">
             <div>
-              <div className="w-full max-w-2xl h-192 relative bg-[url(/flag.png)] bg-2 bg-bottom bg-size-[225%]"></div>
+              <div className="w-full max-w-2xl h-132 lg:h-192 relative bg-[url(/flag.png)] bg-no-repeat bg-bottom bg-size-[175%] md:bg-size-[225%]"></div>
             </div>
             <div>
-              <p className="text-3xl font-medium mb-14">
+              <p className="text-2xl lg:text-3xl font-medium mb-6 lg:mb-14">
                 With decades of experience and a robust presence across 30+
                 countries, our operations are supported by a global network of
                 over 4,000 defense and security experts. From military equipment
@@ -48,7 +48,7 @@ export default function AboutUs() {
         </div>
       </div>
       <Clients />
-      <div className="grid grid-cols-2 bg-white text-black">
+      <div className="grid sm:grid-cols-2 bg-white text-black">
         <OurVision>
           To reinforce national defense capabilities by delivering
           state-of-the-art military equipment, innovative security solutions,
@@ -63,7 +63,7 @@ export default function AboutUs() {
             src="/our-vision-1.png"
           />
         </div>
-        <div className="relative h-[960px]">
+        <div className="relative h-[960px] row-start-4 sm:row-start-4">
           <Image
             fill
             alt="Plane"
@@ -78,7 +78,7 @@ export default function AboutUs() {
         </OurVision>
       </div>
       <div className="bg-[#F1F2F2] text-black">
-        <div className="container pt-28 pb-44">
+        <div className="container px-8 pt-28 pb-44">
           <p className="text-xl text-secondary">{"//"}CORE VALUES</p>
           <p className="font-medium text-4xl pt-2.5 pb-20">
             At Techno International Group, our work is guided by a set of non-
@@ -104,7 +104,7 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-[20%_10%_70%] grid-rows-[780px]">
+      <div className="grid grid-cols-1 sm:grid-cols-[20%_10%_70%] grid-rows-[200px_200px_200px] sm:grid-rows-[780px]">
         <div className="uppercase font-oswald text-center text-3xl p-16 bg-[url(/global-presence-1.png)] bg-cover bg-bottom">
           Global presence
         </div>
@@ -133,8 +133,8 @@ export default function AboutUs() {
         <div className="relative bg-[url(/global-presence-2.png)] bg-cover"></div>
       </div>
       <div>
-        <div className="container pt-24 pb-64">
-          <div className="flex justify-between gap-4">
+        <div className="container px-8 pt-24 pb-64">
+          <div className="flex flex-wrap gap-y-8 justify-between gap-4">
             <div>
               <h1>
                 COMPLIANCE &<br />
@@ -152,7 +152,7 @@ export default function AboutUs() {
             </div>
           </div>
           <hr className="my-16 border-muted" />
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid lg:grid-cols-2 gap-6">
             <Image
               width={860}
               height={490}
@@ -160,7 +160,7 @@ export default function AboutUs() {
               src="/compliance-and-quality-assurance.png"
             />
             <div className="flex flex-col justify-between items-start">
-              <p className="text-3xl font-medium">
+              <p className="text-3xl pb-4 font-medium">
                 Our products and services meet global military standards such as
                 MIL-STD, STANAG, and GOST, ensuring safety, reliability, and
                 operational excellence. Every solution undergoes rigorous
@@ -178,7 +178,7 @@ export default function AboutUs() {
 
 function OurVision({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col justify-between p-24">
+    <div className="flex flex-col justify-between p-12 sm:p-24">
       <div>
         <h2 className="pb-5">OUR VISION</h2>
         <Image width={68} height={68} alt="Logo" src="/full-logo-black.png" />

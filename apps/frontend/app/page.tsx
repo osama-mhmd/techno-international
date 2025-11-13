@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "../components/ui/button";
 import Services from "./services";
+import Events from "./events";
 
 export default function Home() {
   return (
@@ -78,6 +79,7 @@ export default function Home() {
           </span>
         </div>
       </div>
+      <Events />
     </main>
   );
 }

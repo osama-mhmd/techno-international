@@ -15,6 +15,51 @@
   h2 {
     @apply text-5xl;
   }
+  .container-left {
+    @apply pl-4 w-full max-w-none;
+  }
+
+  @media (min-width: 40rem) {
+    .container-left {
+      padding-left: 2.5rem;
+    }
+  }
+  @media (min-width: 48rem) {
+    .container-left {
+      padding-left: 3rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    .container-left {
+      padding-left: 4rem;
+    }
+  }
+  @media (min-width: 80rem) {
+    .container-left {
+      padding-left: 5rem;
+    }
+  }
+  @media (min-width: 96rem) {
+    .container-left {
+      padding-left: 6rem;
+    }
+  }
+
+  .image-scrollbar::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .image-scrollbar::-webkit-scrollbar-track {
+    background: #808285;
+  }
+
+  .image-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #c3996c;
+  }
+
+  .image-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #6b7280; /* gray-500 */
+  }
 }
 
 @theme {

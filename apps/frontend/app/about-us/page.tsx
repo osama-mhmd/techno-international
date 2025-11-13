@@ -63,7 +63,7 @@ export default function AboutUs() {
             src="/our-vision-1.png"
           />
         </div>
-        <div className="relative h-[960px] row-start-4 sm:row-start-4">
+        <div className="relative h-[960px] row-start-4 sm:row-start-auto">
           <Image
             fill
             alt="Plane"

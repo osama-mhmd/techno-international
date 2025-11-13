@@ -84,9 +84,9 @@ function AirLandSea() {
 
 function ServiceExpolre() {
   return (
-    <div className="text-2xl flex items-center gap-4">
+    <button className="cursor-pointer text-2xl flex items-center gap-4">
       EXPLORE
       <ChevronRight size={35} />
-    </div>
+    </button>
   );
 }

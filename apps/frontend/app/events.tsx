@@ -22,17 +22,29 @@ export default function Events() {
           title="International Airshows & Defense Summits – 2024"
           description="Actively present at global airshows, Techno showcases advanced aircraft, UAV, and drone solutions while forging strategic international partnerships."
           eventName="egypt-airshow"
+          imgsAlts={[
+            "Some planes making a show in the sky",
+            "Some planes in the airport",
+          ]}
         />
         <Event
           title="Egypt Defense Expo (EDEX) – 2023"
           description="Showcasing advanced defense innovations at EDEX, reinforcing our commitment to regional partners across Africa and the Middle East."
           eventName="egypt-defence-expo-2023"
           logoOffset={false}
+          imgsAlts={[
+            "A car with a gun made by Techno",
+            "A car with a rocket launcher made by Techno",
+          ]}
         />
         <Event
           title="Egypt Defense Expo (EDEX) – 2021"
           description="Showcasing advanced defense innovations at EDEX, reinforcing our commitment to regional partners across Africa and the Middle East."
           eventName="egypt-defence-expo-2021"
+          imgsAlts={[
+            "A drone made by Amstone",
+            "A prototype for a plane made by Amstone",
+          ]}
         />
       </div>
       <div className="container px-8 pb-44">
@@ -74,6 +86,7 @@ interface EventProps {
   description: string;
   eventName: string;
   logoOffset?: boolean;
+  imgsAlts: string[];
 }
 
 function Event({
@@ -81,10 +94,11 @@ function Event({
   description,
   eventName,
   logoOffset = true,
+  imgsAlts,
 }: EventProps) {
   return (
     <div className="container-left grid grid-cols-1 md:grid-cols-2 mb-28">
-      <div className="flex flex-col justify-between mb-8">
+      <div className="flex flex-col items-start justify-between mb-8">
         <div>
           <p className="text-lg font-bold">{title}</p>
           <p className="text-muted font-medium max-w-sm pt-3 pb-2">
@@ -98,7 +112,7 @@ function Event({
             className={logoOffset ? "-translate-x-2.5" : ""}
           />
         </div>
-        <p className="uppercase underline flex items-center gap-2 font-bold mt-8 lg:mt-0">
+        <button className="uppercase underline flex items-center gap-2 font-bold mt-8 lg:mt-0 cursor-pointer">
           <svg
             width="10"
             height="10"
@@ -120,14 +134,14 @@ function Event({
             />
           </svg>
           Visit full event details
-        </p>
+        </button>
       </div>
 
       <div className="overflow-x-auto flex gap-3 pb-10 image-scrollbar">
         <div className="min-w-xl h-80 relative">
           <Image
             fill
-            alt="Event attachment - some planes flying in the sky"
+            alt={`Event attachment - ${imgsAlts[0]}`}
             src={`/${eventName}-event-1.png`}
             className="shrink-0 object-cover"
           />
@@ -135,7 +149,7 @@ function Event({
         <div className="min-w-xl h-80 relative">
           <Image
             fill
-            alt="Event attachment - some planes lying on the ground"
+            alt={`Event attachment - ${imgsAlts[1]}`}
             src={`/${eventName}-event-2.png`}
             className="shrink-0 object-cover"
           />

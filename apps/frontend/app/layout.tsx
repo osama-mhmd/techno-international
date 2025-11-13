@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Footer from "./footer";
+import Nav from "./nav";
 
 const oswald = localFont({
   src: "../assets/fonts/oswald.ttf",
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${oswald.variable} ${manrope.className}`}>
+        <Nav />
         {children}
         <Footer />
       </body>

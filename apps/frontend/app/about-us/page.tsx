@@ -7,7 +7,7 @@ export default function AboutUs() {
     <main>
       <div className="bg-[url(/about-us.png)] h-[815px] bg-cover">
         <div className="container flex items-end h-full py-10">
-          <p className="text-2xl text-[#C3996C] uppercase">{"//"}About us</p>
+          <p className="text-2xl text-secondary uppercase">{"//"}About us</p>
         </div>
       </div>
       <div className="bg-[url(/about-us-2nd-section.png)] bg-cover pt-20 pb-40 text-black">
@@ -73,6 +73,33 @@ export default function AboutUs() {
           agencies, while driving global stability and security.
         </OurVision>
       </div>
+      <div className="bg-[#F1F2F2] text-black">
+        <div className="container pt-28 pb-44">
+          <p className="text-xl text-secondary">{"//"}CORE VALUES</p>
+          <p className="font-medium text-4xl pt-2.5 pb-20">
+            At Techno International Group, our work is guided by a set of non-
+            negotiable values that define who we are and how we serve.
+          </p>
+          <div className="flex gap-y-4 justify-between flex-wrap">
+            <CoreValue
+              title="INTEGRITY"
+              description="We uphold the highest ethical standards and ensure full compliance with international regulations."
+            />
+            <CoreValue
+              title="INNOVATION"
+              description="We harness cutting-edge technologies to deliver superior defense capabilities."
+            />
+            <CoreValue
+              title="COMMITMENT"
+              description="We are dedicated to meeting the evolving needs of our partners with professionalism and precision."
+            />
+            <CoreValue
+              title="EXCELLENCE"
+              description="We strive for unmatched quality in every product, service, and collaboration."
+            />
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
@@ -85,6 +112,21 @@ function OurVision({ children }: { children: React.ReactNode }) {
         <Image width={68} height={68} alt="Logo" src="/full-logo-black.png" />
       </div>
       <p className="font-medium text-xl mt-5">{children}</p>
+    </div>
+  );
+}
+
+function CoreValue({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="border-t max-w-80">
+      <p className="text-3xl font-oswald pt-4 pb-2.5">{title}</p>
+      <p className="text-[#808285] font-medium text-2xl">{description}</p>
     </div>
   );
 }

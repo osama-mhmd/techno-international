@@ -51,7 +51,7 @@ export default function Events() {
           </div>
         </div>
         <p className="text-4xl font-medium py-10 max-w-6xl">
-          This year, Amstone proudly joins the region’s most influential defense
+          This year, Techno proudly joins the region’s most influential defense
           exhibition — EDEX 2025 — as a headline sponsor and strategic partner.
           Across a commanding presence of over 1,400 sqm, we unveil our latest
           advancements spanning land, air, and sea. From next-generation armored

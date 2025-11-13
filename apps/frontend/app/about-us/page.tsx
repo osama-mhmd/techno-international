@@ -2,6 +2,10 @@ import Image from "next/image";
 import { Button } from "../../components/ui/button";
 import Clients from "./clients";
 
+export const metadata = {
+  title: "About us",
+};
+
 export default function AboutUs() {
   return (
     <main>

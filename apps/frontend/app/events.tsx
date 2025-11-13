@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Events() {
   return (
-    <div className="bg-white text-black bg-[repeating-linear-gradient(to_right,#e5e5e5_0_1px,transparent_1px_415px)]">
-      <div className="container-left mx-auto pt-32">
+    <div className="bg-[#F1F2F2] text-black bg-[repeating-linear-gradient(to_right,#e5e5e5_0_1px,transparent_1px_415px)]">
+      <div className="container pt-32">
         <span className="text-sm text-[#C3996C] uppercase leading-0">
           {"//"}Media centre
         </span>
@@ -34,6 +34,36 @@ export default function Events() {
           description="Showcasing advanced defense innovations at EDEX, reinforcing our commitment to regional partners across Africa and the Middle East."
           eventName="egypt-defence-expo-2021"
         />
+      </div>
+      <div className="container pb-44">
+        <hr />
+        <div className="flex pt-16 gap-4 font-oswald">
+          <Image
+            width={182}
+            height={182}
+            alt="Egypt defence expo 2025"
+            src="/egypt-defence-expo-2025-event.png"
+            className="-translate-x-2 -translate-y-6"
+          />
+          <div>
+            <p className="text-xl">LEADING THE FUTURE OF DEFENSE</p>
+            <p className="text-8xl mt-8">AT EDEX 2025.</p>
+          </div>
+        </div>
+        <p className="text-4xl font-medium py-10 max-w-6xl">
+          This year, Amstone proudly joins the region’s most influential defense
+          exhibition — EDEX 2025 — as a headline sponsor and strategic partner.
+          Across a commanding presence of over 1,400 sqm, we unveil our latest
+          advancements spanning land, air, and sea. From next-generation armored
+          vehicles to autonomous aerial systems and maritime innovations, Techno
+          reaffirms its commitment to powering global defense and regional
+          readiness.
+        </p>
+        <p className="text-4xl text-[#C3996C] underline">
+          VISIT US AT
+          <br />
+          BOOTH 14 - HALL 3
+        </p>
       </div>
     </div>
   );

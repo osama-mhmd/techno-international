@@ -1,12 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "../../components/ui/button";
 import Clients from "./clients";
-
-export const metadata = {
-  title: "About us",
-};
+import { usePageContent } from "../../hooks/use-page-content";
 
 export default function AboutUs() {
+  const { content } = usePageContent("about_us");
+
   return (
     <main>
       <div className="bg-[url(/about-us.png)] h-[815px] bg-cover">
@@ -22,11 +23,7 @@ export default function AboutUs() {
             DEFENSE & SECURITY SOLUTIONS
           </h1>
           <p className="text-3xl font-medium mt-5 max-w-3xl">
-            Techno International Group stands as a premier provider of defense
-            and security solutions, committed to strengthening national security
-            and advancing operational readiness worldwide. We deliver more than
-            products — we deliver confidence, resilience, and innovation that
-            empower nations to protect their sovereignty and citizens.
+            {content("team", "description")}
           </p>
           <div className="grid md:grid-cols-2 mt-24 gap-6">
             <div>

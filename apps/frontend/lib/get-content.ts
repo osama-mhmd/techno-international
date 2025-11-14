@@ -1,3 +1,5 @@
+import defaultContent from "../config/default-content";
+
 interface ContentItem {
   page: string;
   section: string;
@@ -36,33 +38,34 @@ export default async function getContent(page: string) {
 
   if (!res.ok) {
     const errorBody = await res.text();
-    throw new Error(
+    console.log(
       `Failed to fetch content for page "${page}". Status: ${res.status}. Body: ${errorBody}`
     );
   }
 
-  const unreadableContent: ContentItem[] = await res.json();
+  // @ts-expect-error TODO: Need to enhance the type safety here
+  let readableContent = defaultContent[page];
 
-  const readableContent = transformToReadableContent(unreadableContent)[page]!;
+  if (res.ok) {
+    const unreadableContent: ContentItem[] = await res.json();
+
+    readableContent =
+      transformToReadableContent(unreadableContent)[page]! ?? {};
+  }
 
   return (section: string, key?: string) => {
-    const sectionData = readableContent[section];
+    const sectionData =
+      // @ts-expect-error TODO: Need to enhance the type safety here
+      readableContent[section] ?? defaultContent[page][section];
 
-    if (!sectionData) {
-      console.warn(`Content for section "${section}" not found.`);
-      return "";
-    }
+    if (!sectionData) return null;
 
-    if (key === undefined) {
-      return sectionData;
-    }
+    if (key === undefined) return sectionData;
 
-    const value = sectionData[key];
+    // @ts-expect-error TODO: Need to enhance the type safety here
+    const value = sectionData[key] ?? defaultContent[page][section][key];
 
-    if (value === undefined) {
-      console.warn(`Content key "${key}" not found in section "${section}".`);
-      return "";
-    }
+    if (value === undefined) return null;
 
     return value;
   };

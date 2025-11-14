@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { usePageContent } from "../../hooks/use-page-content";
 
 interface User {
   name: string;
@@ -24,15 +25,7 @@ interface User {
 
 // Pages and their sections
 const pages: Record<string, string[]> = {
-  landing: [
-    "landing_view",
-    "define_techno",
-    "services",
-    "search",
-    "events",
-    "header",
-    "footer",
-  ],
+  landing: ["landing_view", "define_techno", "services", "search", "events"],
   about_us: ["team", "mission", "history", "header", "footer"],
 } as const;
 
@@ -337,6 +330,7 @@ export default function PanelContentEditor() {
   const [showWelcome, setShowWelcome] = useState(false);
 
   const [page, setPage] = useState<string>("");
+  const { content } = usePageContent(page);
   const [section, setSection] = useState<string>("");
   const [key, setKey] = useState<string>("");
   const [value, setValue] = useState<string>("");
@@ -386,6 +380,12 @@ export default function PanelContentEditor() {
     }
   }, [section]);
 
+  useEffect(() => {
+    if (!key) return;
+
+    setValue(content(section, key));
+  }, [section, key, content]);
+
   const handleCloseWelcome = () => {
     setShowWelcome(false);
     localStorage.setItem("hasSeenWelcome", "true");
@@ -419,7 +419,7 @@ export default function PanelContentEditor() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-slate-900 to-secondary/10 flex items-center justify-center">
         <div className="text-white text-lg">Loading...</div>
       </div>
     );

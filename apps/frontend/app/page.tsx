@@ -19,11 +19,10 @@ export default function Home() {
             DEFENSE & SECURITY SOLUTIONS
           </h1>
           <p className="text-2xl max-w-[40ch]">
-            {content("landing_view", "description") ??
-              "Empowering nations with cutting-edge equipment, advanced technology and trusted expertise."}
+            {content("landing_view", "description")}
           </p>
           <Button className="mt-4" arrow="has">
-            {content("landing_view", "button_text") ?? "Expolre"}
+            {content("landing_view", "button_text")}
           </Button>
         </div>
       </div>
@@ -37,17 +36,7 @@ export default function Home() {
             </p>
             <div>
               <p className="text-3xl sm:text-4xl">
-                {content("define_techno", "description") ?? (
-                  <>
-                    Techno International Group is a premier provider of defense
-                    and security solutions, dedicated to enhancing national
-                    security and operational readiness across the globe. With
-                    decades of experience and a network of over 4,000 experts
-                    across Africa and beyond, we deliver comprehensive,
-                    mission-ready solutions tailored to armed forces, law
-                    enforcement agencies, and government institutions.
-                  </>
-                )}
+                {content("define_techno", "description")}
               </p>
               <div className="flex items-start flex-col md:flex-row gap-2 mt-6">
                 <Button variant="outline" arrow="has">
@@ -82,10 +71,10 @@ export default function Home() {
           <input
             type="text"
             className="w-full border-0 border-b text-xl py-5 bg-transparent border-[#58595B] focus:outline-0 focus:border-white"
-            placeholder="What are you looking for? Vehicles, UAVs, Maritime Systems, Support…"
+            placeholder={content("search", "placeholder")}
           />
           <span className="absolute right-1 bottom-2 select-none underline text-2xl font-oswald">
-            SEARCH
+            {content("search", "button_text")}
           </span>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import db, { users } from "../db";
+import { eq } from "drizzle-orm";
 
 export type UserRole = "owner" | "admin";
 
@@ -19,7 +21,7 @@ declare global {
 }
 
 export function auth(...allowedRoles: UserRole[]) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const header = req.headers.authorization;
 
     if (!header) {
@@ -30,6 +32,14 @@ export function auth(...allowedRoles: UserRole[]) {
 
     try {
       const decoded = jwt.verify(token, process.env.JWTSECRET!) as AuthUser;
+
+      const [user] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, decoded.id));
+
+      if (!user) throw new Error("User not found");
+
       req.user = decoded;
 
       if (!allowedRoles) {
@@ -41,8 +51,10 @@ export function auth(...allowedRoles: UserRole[]) {
       }
 
       next();
-    } catch (_) {
-      return res.status(401).json({ message: "Invalid or expired token" });
+    } catch (error) {
+      return res
+        .status(401)
+        .json({ message: "Invalid or expired token", error });
     }
   };
 }

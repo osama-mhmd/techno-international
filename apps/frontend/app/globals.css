@@ -64,10 +64,24 @@
   .container {
     @apply mx-auto;
   }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .appear {
+    animation: fadeIn 0.8s ease-in forwards;
+  }
 }
 
 @theme {
   --color-secondary: #c3996c;
   --color-muted: #808285;
   --font-oswald: var(--font-oswald);
+  --breakpoint-xs: 28rem;
 }

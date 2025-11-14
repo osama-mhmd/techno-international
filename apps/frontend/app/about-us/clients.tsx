@@ -1,21 +1,24 @@
 import Image from "next/image";
 import { cn } from "../../lib/utils";
+import SlideFade from "../../components/slide-fade";
 
 export default function Clients() {
   return (
     <div className="bg-[repeating-linear-gradient(to_right,#6D6E71_0_1px,transparent_1px_415px)]">
       <div className="container grid md:grid-cols-2 px-8 py-20">
-        <div>
-          <h1>
-            OUR CLIENTS
-            <br />& PARTNERS
-          </h1>
-          <p className="font-medium text-3xl mt-5 max-w-2xl">
-            Partnerships are the cornerstone of our success. We collaborate with
-            governments, ministries of defense, and leading defense
-            manufacturers to strengthen security worldwide.
-          </p>
-        </div>
+        <SlideFade>
+          <div>
+            <h1>
+              OUR CLIENTS
+              <br />& PARTNERS
+            </h1>
+            <p className="font-medium text-3xl mt-5 max-w-2xl">
+              Partnerships are the cornerstone of our success. We collaborate
+              with governments, ministries of defense, and leading defense
+              manufacturers to strengthen security worldwide.
+            </p>
+          </div>
+        </SlideFade>
         <div className="pt-8 md:pt-36">
           <ul>
             <Client name="UK Ministry of defence" className="border-t" />
@@ -62,17 +65,21 @@ interface ClientProps {
 
 function Client({ name, className, children, expanded }: ClientProps) {
   return (
-    <li className={cn("py-4 border-b border-muted cursor-pointer", className)}>
-      <div className="flex gap-4 items-center font-oswald uppercase text-2xl">
-        {expanded ? <MinusSign /> : <PlusSign />}
-        {name}
-      </div>
-      {expanded && (
-        <div className="text-muted text-xl py-8 flex flex-col gap-7 ps-14">
-          {children}
+    <SlideFade>
+      <li
+        className={cn("py-4 border-b border-muted cursor-pointer", className)}
+      >
+        <div className="flex gap-4 items-center font-oswald uppercase text-2xl">
+          {expanded ? <MinusSign /> : <PlusSign />}
+          {name}
         </div>
-      )}
-    </li>
+        {expanded && (
+          <div className="text-muted text-xl py-8 flex flex-col gap-7 ps-14">
+            {children}
+          </div>
+        )}
+      </li>
+    </SlideFade>
   );
 }
 

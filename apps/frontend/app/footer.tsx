@@ -16,7 +16,7 @@ export default function Footer() {
         OF DEFENSE TOGETHER.
       </p>
       <p className="underline pt-16 pb-10">info@technoig.com</p>
-      <p className="underline">
+      <p className="underline px-4">
         Offices in Egypt, UAE, Hungary, South Africa, Central Africa
       </p>
       <p className="underline pb-16">+207 29801663</p>

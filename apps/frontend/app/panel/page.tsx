@@ -2,132 +2,19 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "../../components/ui/button";
-import {
-  FileText,
-  Users,
-  Home,
-  Layout,
-  Search,
-  Calendar,
-  Menu,
-  Hash,
-  Type,
-  Sparkles,
-  X,
-} from "lucide-react";
+import { FileText, Layout, Hash, Type } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { usePageContent } from "../../hooks/use-page-content";
+import WelcomeDialog from "./welcome-dialog";
+import { Page, pageIcons, pages, sectionIcons } from "./data.lib";
 
 interface User {
   name: string;
   role: "admin" | "owner";
 }
 
-// Pages and their sections
-const pages: Record<string, string[]> = {
-  landing: ["landing_view", "define_techno", "services", "search", "events"],
-  about_us: ["team", "mission", "history", "header", "footer"],
-} as const;
-
-// Sections and their keys
-const sectionsKeys: Record<string, string[]> = {
-  landing_view: ["heading", "description", "button_text"],
-  define_techno: ["heading", "description"],
-  services: [
-    "service_1_heading",
-    "service_1_description",
-    "service_2_heading",
-    "service_2_description",
-    "service_3_heading",
-    "service_3_description",
-  ],
-  search: ["placeholder", "button_text"],
-  events: ["event_1", "event_2", "event_3"],
-  footer: ["footer_text", "footer_links"],
-  header: ["title", "menu_1", "menu_2"],
-  team: ["team_heading", "team_description"],
-  mission: ["mission_heading", "mission_description"],
-  history: ["history_heading", "history_description"],
-};
-
-const pageIcons: Record<string, typeof Home> = {
-  landing: Home,
-  about_us: Users,
-};
-
-const sectionIcons: Record<string, typeof Home> = {
-  landing_view: Layout,
-  define_techno: FileText,
-  services: Layout,
-  search: Search,
-  events: Calendar,
-  footer: Layout,
-  header: Menu,
-  team: Users,
-  mission: FileText,
-  history: FileText,
-};
-
-// Welcome Dialog Component
-interface WelcomeDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  userName: string;
-}
-
-function WelcomeDialog({ isOpen, onClose, userName }: WelcomeDialogProps) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-      <div className="relative bg-linear-to-br from-slate-900 to-secondary/20 border border-white/20 rounded-2xl shadow-2xl max-w-lg w-full p-8 animate-in zoom-in-95 duration-300">
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
-
-        <div className="flex flex-col items-center text-center">
-          <div className="bg-linear-to-br from-purple-500 to-pink-500 p-4 rounded-full mb-6">
-            <Sparkles className="w-8 h-8 text-white" />
-          </div>
-
-          <h2 className="text-3xl font-bold text-white mb-3">
-            Welcome, {userName}!
-          </h2>
-
-          <p className="text-muted text-lg mb-6">
-            Get started with the Content Editor to manage your website content
-            effortlessly. Select a page, section, and key to edit your content.
-          </p>
-
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 mb-6 w-full text-left">
-            <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
-              <FileText className="w-4 h-4" />
-              Important Note:
-            </h3>
-            <p className="text-muted text-sm space-y-1">
-              All the {'"keys"'} have default values, so in case you didn{"'"}t
-              change them from the panel, they will have the default values
-            </p>
-          </div>
-
-          <Button
-            onClick={onClose}
-            className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 text-base font-semibold rounded-xl transition-all duration-200 w-full"
-          >
-            Get Started
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Page Selection Component
 interface PageSelectionProps {
-  pages: Record<string, string[]>;
+  pages: Record<string, Page>;
   selectedPage: string;
   onSelectPage: (page: string) => void;
 }
@@ -189,7 +76,6 @@ function PageSelection({
   );
 }
 
-// Section Selection Component
 interface SectionSelectionProps {
   sections: string[];
   selectedSection: string;
@@ -254,7 +140,7 @@ function KeySelection({ keys, selectedKey, onSelectKey }: KeySelectionProps) {
         Select Key
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {keys.map((k) => {
+        {(keys ?? []).map((k) => {
           const isSelected = selectedKey === k;
           return (
             <button
@@ -296,7 +182,7 @@ function ValueInput({ value, onChange }: ValueInputProps) {
       <h2 className="text-xl font-semibold text-white mb-4">Enter Value</h2>
       <textarea
         placeholder="Enter your content here..."
-        value={value}
+        value={value ?? ""}
         onChange={(e) => onChange(e.target.value)}
         className="bg-white/10 border-transparent focus:border-white/50 text-white placeholder:text-gray-400 px-4 py-3 rounded-md focus:outline-0 border-b-2 transition w-full text-lg"
         rows={4}
@@ -362,26 +248,27 @@ export default function PanelContentEditor() {
     });
   }, [router]);
 
-  // Update sections when page changes
   useEffect(() => {
     if (page) {
-      setSectionsForPage(pages[page] as string[]);
+      setSectionsForPage(Object.keys(pages[page as keyof typeof pages]));
       setSection("");
       setKey("");
       setKeysForSection([]);
     }
   }, [page]);
 
-  // Update keys when section changes
   useEffect(() => {
     if (section) {
-      setKeysForSection(sectionsKeys[section] as string[]);
+      setKeysForSection(pages[page as keyof typeof pages][section] as string[]);
       setKey("");
     }
-  }, [section]);
+  }, [page, section]);
 
   useEffect(() => {
-    if (!key) return;
+    if (!key) {
+      setValue("");
+      return;
+    }
 
     setValue(content(section, key));
   }, [section, key, content]);

@@ -2,6 +2,23 @@
 
 ![Website Landing View](docs/images/website-landing-view.png)
 
+### Table of content
+
+- [Introduction](#introduction)
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Development](#development)
+- [Project structure](#project-structure)
+- [Guidelines](#guidelines)
+- [Concepts](#concepts)
+  - [How The CMS Works](#how-the-cms-works)
+  - [Usage of AI](#usage-of-ai)
+  - [Authentication & Authorization](#authentication--authorization)
+- [Contributing](#contributing)
+- [Glassory](#glassory)
+
 ## Introduction
 
 My name is Osama Mohammed, and this is the technical assessment for joining **EngTechno**. This project was built according to the Figma design provided, and it includes an Admin Panel available at: **[Admin Panel](https://techno-international.vercel.app/panel)** to almost manage all the content of the website.
@@ -128,3 +145,8 @@ Please familiarize yourself with the concepts of the app before contributing. We
 
 Check open issues here:  
 **[Techno International Issues](https://github.com/osama-mhmd/techno-international/issues)**
+
+## Glassory
+
+![Website Admin Panel - Content Management](docs/images/website-admin-panel-1.png)
+![Website Admin Panel - Admins Management](docs/images/website-admin-panel-2.png)

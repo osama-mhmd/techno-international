@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "../components/ui/button";
 import Services from "./services";
 import Events from "./events";
+import { usePageContent } from "../hooks/use-page-content";
 
 export default function Home() {
+  const { content } = usePageContent("landing");
+
   return (
     <main>
       <div className="bg-[url(/landing-page.png)] bg-cover bg-black/25 py-16 bg-blend-multiply">
@@ -14,11 +19,10 @@ export default function Home() {
             DEFENSE & SECURITY SOLUTIONS
           </h1>
           <p className="text-2xl max-w-[40ch]">
-            Empowering nations with cutting-edge equipment, advanced technology,
-            and trusted expertise.
+            {content("landing_view", "description")}
           </p>
           <Button className="mt-4" arrow="has">
-            Expolre
+            {content("landing_view", "button_text")}
           </Button>
         </div>
       </div>
@@ -27,17 +31,12 @@ export default function Home() {
           <hr />
           <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-[40%_60%]">
             <p className="text-secondary text-xl text-center">
-              {"//"}DEFINING TECHNO
+              {"//"}
+              {content("define_techno", "heading") ?? "DEFINING TECHNO"}
             </p>
             <div>
               <p className="text-3xl sm:text-4xl">
-                Techno International Group is a premier provider of defense and
-                security solutions, dedicated to enhancing national security and
-                operational readiness across the globe. With decades of
-                experience and a network of over 4,000 experts across Africa and
-                beyond, we deliver comprehensive, mission-ready solutions
-                tailored to armed forces, law enforcement agencies, and
-                government institutions.
+                {content("define_techno", "description")}
               </p>
               <div className="flex items-start flex-col md:flex-row gap-2 mt-6">
                 <Button variant="outline" arrow="has">
@@ -49,7 +48,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Services />
+      <Services content={content} />
       <div className="px-14 py-14 bg-[url(/search.png)] bg-cover bg-center">
         <div className="flex justify-between">
           <div>
@@ -72,10 +71,10 @@ export default function Home() {
           <input
             type="text"
             className="w-full border-0 border-b text-xl py-5 bg-transparent border-[#58595B] focus:outline-0 focus:border-white"
-            placeholder="What are you looking for? Vehicles, UAVs, Maritime Systems, Support…"
+            placeholder={content("search", "placeholder")}
           />
           <span className="absolute right-1 bottom-2 select-none underline text-2xl font-oswald">
-            SEARCH
+            {content("search", "button_text")}
           </span>
         </div>
       </div>

@@ -56,7 +56,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Services content={content} />
+      <Services isLoading={isLoading} content={content} />
       <div className="p-6 xs:p-14 bg-[url(/search.png)] bg-cover bg-center">
         <div className="flex flex-col gap-y-6 xs:flex-row justify-between">
           <div>
@@ -86,7 +86,7 @@ export default function Home() {
           </span>
         </div>
       </div>
-      <Events />
+      <Events isLoading={isLoading} content={content} />
     </main>
   );
 }

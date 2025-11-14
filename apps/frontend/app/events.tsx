@@ -1,7 +1,15 @@
 import Image from "next/image";
 import SlideFade from "../components/slide-fade";
+import { GetContent } from "../lib/get-content";
+import { Skeleton } from "../components/ui/skeleton";
 
-export default function Events() {
+export default function Events({
+  content,
+  isLoading,
+}: {
+  content: GetContent;
+  isLoading: boolean;
+}) {
   return (
     <div className="bg-[#F1F2F2] text-black bg-[repeating-linear-gradient(to_right,#e5e5e5_0_1px,transparent_1px_415px)]">
       <SlideFade>
@@ -10,20 +18,19 @@ export default function Events() {
             {"//"}Media centre
           </span>
           <p className="text-xl mb-8 uppercase">Industry events</p>
-          <p className="text-3xl pb-48">
-            At Techno International Group, we believe that leadership in defense
-            and security extends beyond delivering equipment and expertise —
-            it’s about being at the heart of global conversations that shape the
-            future of defense. That’s why we actively participat
-          </p>
+          <div className="text-3xl pb-48">
+            {isLoading && <Skeleton className="w-full max-w-xl h-36" />}
+            {content("events", "events_introduction")}
+          </div>
           <hr />
         </div>
       </SlideFade>
 
       <div className="py-16">
         <Event
-          title="International Airshows & Defense Summits – 2024"
-          description="Actively present at global airshows, Techno showcases advanced aircraft, UAV, and drone solutions while forging strategic international partnerships."
+          isLoading={isLoading}
+          title={content("events", "event_1_title")}
+          description={content("events", "event_1_description")}
           eventName="egypt-airshow"
           imgsAlts={[
             "Some planes making a show in the sky",
@@ -31,8 +38,9 @@ export default function Events() {
           ]}
         />
         <Event
-          title="Egypt Defense Expo (EDEX) – 2023"
-          description="Showcasing advanced defense innovations at EDEX, reinforcing our commitment to regional partners across Africa and the Middle East."
+          isLoading={isLoading}
+          title={content("events", "event_2_title")}
+          description={content("events", "event_2_description")}
           eventName="egypt-defence-expo-2023"
           logoOffset={false}
           imgsAlts={[
@@ -41,13 +49,14 @@ export default function Events() {
           ]}
         />
         <Event
-          title="Egypt Defense Expo (EDEX) – 2021"
-          description="Showcasing advanced defense innovations at EDEX, reinforcing our commitment to regional partners across Africa and the Middle East."
+          title={content("events", "event_3_title")}
+          description={content("events", "event_3_description")}
           eventName="egypt-defence-expo-2021"
           imgsAlts={[
             "A drone made by Amstone",
             "A prototype for a plane made by Amstone",
           ]}
+          isLoading={isLoading}
         />
       </div>
       <SlideFade>
@@ -66,15 +75,10 @@ export default function Events() {
               <p className="text-6xl sm:text-8xl xs:mt-8">AT EDEX 2025.</p>
             </div>
           </div>
-          <p className="text-2xl xs:text-4xl font-medium py-10 max-w-6xl">
-            This year, Techno proudly joins the region’s most influential
-            defense exhibition — EDEX 2025 — as a headline sponsor and strategic
-            partner. Across a commanding presence of over 1,400 sqm, we unveil
-            our latest advancements spanning land, air, and sea. From
-            next-generation armored vehicles to autonomous aerial systems and
-            maritime innovations, Techno reaffirms its commitment to powering
-            global defense and regional readiness.
-          </p>
+          <div className="text-2xl xs:text-4xl font-medium py-10 max-w-6xl">
+            {isLoading && <Skeleton className="w-full h-96" />}
+            {content("events", "edex_2025_topic")}
+          </div>
           <p className="text-4xl text-secondary underline">
             VISIT US AT
             <br />
@@ -92,6 +96,7 @@ interface EventProps {
   eventName: string;
   logoOffset?: boolean;
   imgsAlts: string[];
+  isLoading: boolean;
 }
 
 function Event({
@@ -100,16 +105,21 @@ function Event({
   eventName,
   logoOffset = true,
   imgsAlts,
+  isLoading,
 }: EventProps) {
   return (
     <SlideFade>
       <div className="container-left grid grid-cols-1 md:grid-cols-2 mb-28">
         <div className="flex flex-col items-start justify-between mb-8">
           <div>
-            <p className="text-lg font-bold">{title}</p>
-            <p className="text-muted font-medium max-w-sm pt-3 pb-2">
+            <div className="text-lg font-bold">
+              {isLoading && <Skeleton className="w-36 h-6" />}
+              {title}
+            </div>
+            <div className="text-muted font-medium max-w-sm pt-3 pb-2">
+              {isLoading && <Skeleton className="w-full h-36" />}
               {description}
-            </p>
+            </div>
             <Image
               width={185}
               height={100}

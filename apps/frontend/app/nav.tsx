@@ -9,6 +9,9 @@ export default function Nav() {
   const pathname = usePathname();
 
   const inAboutPage = pathname == "/about-us";
+  const forAdmins = pathname.includes("/panel");
+
+  if (forAdmins) return;
 
   return (
     <nav

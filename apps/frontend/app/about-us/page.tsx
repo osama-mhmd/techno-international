@@ -4,9 +4,11 @@ import Image from "next/image";
 import { Button } from "../../components/ui/button";
 import Clients from "./clients";
 import { usePageContent } from "../../hooks/use-page-content";
+import SlideFade from "../../components/slide-fade";
+import { Skeleton } from "../../components/ui/skeleton";
 
 export default function AboutUs() {
-  const { content } = usePageContent("about_us");
+  const { content, isLoading } = usePageContent("about_us");
 
   return (
     <main>
@@ -22,23 +24,19 @@ export default function AboutUs() {
             <br />
             DEFENSE & SECURITY SOLUTIONS
           </h1>
-          <p className="text-3xl font-medium mt-5 max-w-3xl">
+          <div className="text-3xl font-medium mt-5 w-full max-w-3xl">
             {content("team", "description")}
-          </p>
-          <div className="grid md:grid-cols-2 mt-24 gap-6">
+            {isLoading && <Skeleton className="w-full h-24" />}
+          </div>
+          <div className="grid md:grid-cols-2 md:mt-24 gap-6">
             <div>
               <div className="w-full max-w-2xl h-132 lg:h-192 relative bg-[url(/flag.png)] bg-no-repeat bg-bottom bg-size-[175%] md:bg-size-[225%]"></div>
             </div>
             <div>
-              <p className="text-2xl lg:text-3xl font-medium mb-6 lg:mb-14">
-                With decades of experience and a robust presence across 30+
-                countries, our operations are supported by a global network of
-                over 4,000 defense and security experts. From military equipment
-                and advanced technologies to strategic consulting and training,
-                we offer mission-ready solutions tailored to the unique needs of
-                armed forces, law enforcement agencies, and government
-                institutions.
-              </p>
+              <div className="text-2xl lg:text-3xl font-medium mb-6 lg:mb-14">
+                {content("team", "image_caption")}
+                {isLoading && <Skeleton className="w-full h-162" />}
+              </div>
               <Button>Download company profile</Button>
             </div>
           </div>
@@ -47,10 +45,8 @@ export default function AboutUs() {
       <Clients />
       <div className="grid sm:grid-cols-2 bg-white text-black">
         <OurVision>
-          To reinforce national defense capabilities by delivering
-          state-of-the-art military equipment, innovative security solutions,
-          and expert consultancy services that safeguard nations and support
-          mission success.
+          {content("vision", "vision_1")}
+          {isLoading && <Skeleton className="w-full h-36" />}
         </OurVision>
         <div className="relative h-[960px]">
           <Image
@@ -69,9 +65,8 @@ export default function AboutUs() {
           />
         </div>
         <OurVision>
-          To be recognized as the world’s most trusted defense partner,
-          providing advanced solutions that empower military and law enforcement
-          agencies, while driving global stability and security.
+          {content("vision", "vision_1")}
+          {isLoading && <Skeleton className="w-full h-36" />}
         </OurVision>
       </div>
       <div className="bg-[#F1F2F2] text-black">
@@ -82,22 +77,24 @@ export default function AboutUs() {
             negotiable values that define who we are and how we serve.
           </p>
           <div className="flex gap-y-4 justify-between flex-wrap">
-            <CoreValue
-              title="INTEGRITY"
-              description="We uphold the highest ethical standards and ensure full compliance with international regulations."
-            />
-            <CoreValue
-              title="INNOVATION"
-              description="We harness cutting-edge technologies to deliver superior defense capabilities."
-            />
-            <CoreValue
-              title="COMMITMENT"
-              description="We are dedicated to meeting the evolving needs of our partners with professionalism and precision."
-            />
-            <CoreValue
-              title="EXCELLENCE"
-              description="We strive for unmatched quality in every product, service, and collaboration."
-            />
+            <SlideFade>
+              <CoreValue
+                title="INTEGRITY"
+                description="We uphold the highest ethical standards and ensure full compliance with international regulations."
+              />
+              <CoreValue
+                title="INNOVATION"
+                description="We harness cutting-edge technologies to deliver superior defense capabilities."
+              />
+              <CoreValue
+                title="COMMITMENT"
+                description="We are dedicated to meeting the evolving needs of our partners with professionalism and precision."
+              />
+              <CoreValue
+                title="EXCELLENCE"
+                description="We strive for unmatched quality in every product, service, and collaboration."
+              />
+            </SlideFade>
           </div>
         </div>
       </div>
@@ -132,18 +129,18 @@ export default function AboutUs() {
       <div>
         <div className="container px-8 pt-24 pb-64">
           <div className="flex flex-wrap gap-y-8 justify-between gap-4">
-            <div>
-              <h1>
-                COMPLIANCE &<br />
-                QUALITY ASSURANCE
-              </h1>
-              <p className="font-medium text-3xl pt-5 max-w-2xl">
-                We operate with unwavering transparency and accountability.
-                Techno International Group strictly adheres to international
-                arms regulations including ITAR, EAR, and UN export control
-                laws.
-              </p>
-            </div>
+            <SlideFade>
+              <div>
+                <h1>
+                  COMPLIANCE &<br />
+                  QUALITY ASSURANCE
+                </h1>
+                <div className="font-medium text-3xl pt-5 max-w-2xl">
+                  {content("compliance", "description")}
+                  {isLoading && <Skeleton className="w-full h-24" />}
+                </div>
+              </div>
+            </SlideFade>
             <div>
               <Image width={150} height={150} alt="Logo" src="/full-logo.png" />
             </div>
@@ -156,16 +153,15 @@ export default function AboutUs() {
               alt="A photo of a solider explaining the mission for the team"
               src="/compliance-and-quality-assurance.png"
             />
-            <div className="flex flex-col justify-between items-start">
-              <p className="text-3xl pb-4 font-medium">
-                Our products and services meet global military standards such as
-                MIL-STD, STANAG, and GOST, ensuring safety, reliability, and
-                operational excellence. Every solution undergoes rigorous
-                quality assurance processes, guaranteeing that our partners
-                receive only the highest level of performance.
-              </p>
-              <Button variant="outline">Download company profile</Button>
-            </div>
+            <SlideFade>
+              <div className="flex flex-col justify-between items-start">
+                <div className="text-3xl w-full pb-4 font-medium">
+                  {content("compliance", "image_caption")}
+                  {isLoading && <Skeleton className="w-full h-42" />}
+                </div>
+                <Button variant="outline">Download company profile</Button>
+              </div>
+            </SlideFade>
           </div>
         </div>
       </div>
@@ -180,7 +176,7 @@ function OurVision({ children }: { children: React.ReactNode }) {
         <h2 className="pb-5">OUR VISION</h2>
         <Image width={68} height={68} alt="Logo" src="/full-logo-black.png" />
       </div>
-      <p className="font-medium text-xl mt-5">{children}</p>
+      <div className="font-medium text-xl mt-5">{children}</div>
     </div>
   );
 }

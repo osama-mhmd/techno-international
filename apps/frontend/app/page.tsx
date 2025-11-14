@@ -5,23 +5,29 @@ import { Button } from "../components/ui/button";
 import Services from "./services";
 import Events from "./events";
 import { usePageContent } from "../hooks/use-page-content";
+import SlideFade from "../components/slide-fade";
+import { Skeleton } from "../components/ui/skeleton";
 
 export default function Home() {
-  const { content } = usePageContent("landing");
+  const { content, isLoading } = usePageContent("landing");
 
   return (
     <main>
       <div className="bg-[url(/landing-page.png)] bg-cover bg-black/25 py-16 bg-blend-multiply">
         <div className="container px-8 h-screen flex flex-col justify-center mx-auto items-start gap-4 max-w-6xl">
-          <h1>
-            GLOBAL LEADERS IN
-            <br />
-            DEFENSE & SECURITY SOLUTIONS
-          </h1>
-          <p className="text-2xl max-w-[40ch]">
+          <SlideFade>
+            <h1>
+              GLOBAL LEADERS IN
+              <br />
+              DEFENSE & SECURITY SOLUTIONS
+            </h1>
+          </SlideFade>
+          <div className="text-2xl w-full max-w-[40ch]">
+            {isLoading && <Skeleton className="w-full h-12" />}
             {content("landing_view", "description")}
-          </p>
+          </div>
           <Button className="mt-4" arrow="has">
+            {isLoading && "Explore"}
             {content("landing_view", "button_text")}
           </Button>
         </div>
@@ -30,15 +36,17 @@ export default function Home() {
         <div className="container px-8 mx-auto flex flex-col gap-12 pt-16 pb-32">
           <hr />
           <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-[40%_60%]">
-            <p className="text-secondary text-xl text-center">
+            <p className="text-secondary text-xl text-center uppercase">
               {"//"}
+              {isLoading && "Defining techno"}
               {content("define_techno", "heading") ?? "DEFINING TECHNO"}
             </p>
             <div>
-              <p className="text-3xl sm:text-4xl">
+              <div className="text-3xl sm:text-4xl">
+                {isLoading && <Skeleton className="w-full h-96" />}
                 {content("define_techno", "description")}
-              </p>
-              <div className="flex items-start flex-col md:flex-row gap-2 mt-6">
+              </div>
+              <div className="flex items-start md:items-center flex-col md:flex-row gap-2 mt-6">
                 <Button variant="outline" arrow="has">
                   Explore
                 </Button>
@@ -48,9 +56,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Services content={content} />
-      <div className="px-14 py-14 bg-[url(/search.png)] bg-cover bg-center">
-        <div className="flex justify-between">
+      <Services isLoading={isLoading} content={content} />
+      <div className="p-6 xs:p-14 bg-[url(/search.png)] bg-cover bg-center">
+        <div className="flex flex-col gap-y-6 xs:flex-row justify-between">
           <div>
             <h1>
               Search the
@@ -78,7 +86,7 @@ export default function Home() {
           </span>
         </div>
       </div>
-      <Events />
+      <Events isLoading={isLoading} content={content} />
     </main>
   );
 }

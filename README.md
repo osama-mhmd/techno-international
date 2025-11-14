@@ -1,135 +1,152 @@
-# Turborepo starter
+# Techno International Groups
 
-This Turborepo starter is maintained by the Turborepo core team.
+![Website Landing View](docs/images/website-landing-view.png)
 
-## Using this example
+### Table of content
 
-Run the following command:
+- [Introduction](#introduction)
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Development](#development)
+- [Project structure](#project-structure)
+- [Guidelines](#guidelines)
+- [Concepts](#concepts)
+  - [How The CMS Works](#how-the-cms-works)
+  - [Usage of AI](#usage-of-ai)
+  - [Authentication & Authorization](#authentication--authorization)
+- [Contributing](#contributing)
+- [Glassory](#glassory)
 
-```sh
-npx create-turbo@latest
-```
+## Introduction
 
-## What's inside?
+My name is Osama Mohammed, and this is the technical assessment for joining **EngTechno**. This project was built according to the Figma design provided, and it includes an Admin Panel available at: **[Admin Panel](https://techno-international.vercel.app/panel)** to almost manage all the content of the website.
 
-This Turborepo includes the following packages/apps:
+Both the frontend and backend are deployed on Vercel. (Why Vercel? See the [Development](#development) section.)
 
-### Apps and Packages
+## Overview
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+The main features of the app:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- **Pixel-perfect design** matching the provided Figma design.
+- **Accessibility**: The website is accessible for people with disabilities (keyboard navigation implemented) and works across all device sizes.
+- **Admin panel**: A secure admin panel that makes the website’s content highly customizable.
 
-### Utilities
+Potential improvements if more time were available (i.e., regarding scalability):
 
-This Turborepo has some additional tools already setup for you:
+- **Stateful authentication**: I would not rely solely on JWT. I would introduce a `sessions` table to support stateful authentication. [More about Stateful vs Stateless Authentication](https://medium.com/@kennch/stateful-and-stateless-authentication-10aa3e3d4986).
+- **Normalize the database**: The current `pages` table can be split into more meaningful tables.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Getting Started
 
-### Build
+### Prerequisites
 
-To build all apps and packages, run the following command:
+- Node.js 18 or newer.
 
-```
-cd my-turborepo
+### Installation
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+1. **Clone the repo:** `git clone https://github.com/osama-mhmd/techno-international`
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+2. **Install dependencies:** `pnpm i`
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+3. **Setup environment variables:**  
+   Run:  
+   `cd apps/backend && cp .example.env .env`  
+   Then fill in the required environment variables.  
+   → After setting `DATABASE_URL`, apply migrations using:  
+   `pnpm run db:migrate`
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+4. **Start the app:** `pnpm run dev`
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## Development
 
-### Develop
+Here are the tools I used and why:
 
-To develop all apps and packages, run the following command:
+- **Turborepo**: Not strictly needed in this project since there are no shared libraries, but it does help keep the structure organized.
+- **Next.js**: If not required, I would prefer using React alone because Next.js consumes more memory (which can increase hosting costs). Also, most components are client components, so the SEO benefits were minimal.
+- **Express.js**: If not required, I would choose NestJS for better type safety and more coherent architecture.
+- **Drizzle ORM**: Faster than Prisma and I’m already familiar with it.
+- **PostgreSQL**
+- **JSON Web Token (JWT)**
+- **Vercel**: Chosen because it simplifies deployment significantly.
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Project Structure
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+techno international
+--- apps/
+--- --- frontend/
+--- --- --- app/
+--- --- --- assets/
+--- --- --- components/
+--- --- --- config/
+--- --- --- hooks/
+--- --- --- lib/
+--- --- --- public/
+--- --- backend/
+--- --- --- drizzle/
+--- --- --- scripts/
+--- --- --- src/
+--- --- --- --- db/
+--- --- --- --- middlewares/
+--- --- --- --- routes/
+--- --- --- --- server.ts
+--- docs/
+--- packages/
+--- pnpm-lock.yaml
+--- turbo.config
 ```
 
-### Remote Caching
+## Guidelines
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Please follow these guidelines when contributing:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- **Use ESLint & Prettier**
+- **Use Conventional Commits**: Follow the existing commit message format. [Learn More](https://www.conventionalcommits.org/en/v1.0.0/)
+- **Use GitFlow**: [Learn More](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## Concepts
 
-```
-cd my-turborepo
+### How the CMS Works
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+The CMS design is simple. The `pages` table contains:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+- `page`
+- `section`
+- `key`
+- `value`
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Each page contains multiple sections (e.g. services, events, clients). Each section contains multiple keys (e.g. `heading`, `description`, `button_text`).
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+You can fetch content via: `/pages/:page` Where `:page` can be `'landing'`, `'about_us'`, etc.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+In the frontend, these rows are transformed into structured data using: `frontend/lib/get-content.ts`
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+Usage example: `getContent('landing')('landing_view', 'description')`
 
-## Useful Links
+If a value is not found in the database, a default value is used from: `frontend/config/default-content.ts`.
 
-Learn more about the power of Turborepo:
+As mentioned earlier, the database should be normalized further instead of relying heavily on frontend logic, because the backend should enforce allowed sections and keys.
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### Usage of AI
+
+AI usage is allowed, but changes must be reviewed before committing. For me, since this is an assessment, I minimized AI usage except when designing the `/panel`, where I used Claude. I adjusted Claude’s output to match the website’s visual style.
+
+### Authentication & Authorization
+
+Authentication uses JWT for simplicity. However, I would prefer stateful auth (via a `sessions` table) for improved security.
+
+Authorization uses `backend/src/middlewares/auth.ts` where you can specify allowed roles (`admin`, `owner`, or both).
+
+## Contributing
+
+Please familiarize yourself with the concepts of the app before contributing. We welcome ideas and feedback.
+
+Check open issues here:  
+**[Techno International Issues](https://github.com/osama-mhmd/techno-international/issues)**
+
+## Glassory
+
+![Website Admin Panel - Content Management](docs/images/website-admin-panel-1.png)
+![Website Admin Panel - Admins Management](docs/images/website-admin-panel-2.png)

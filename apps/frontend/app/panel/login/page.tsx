@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,16 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then(async (res) => {
+      if (res.ok) router.push("/panel");
+    });
+  }, [router]);
 
   const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
@@ -50,15 +60,17 @@ export default function Login() {
     }
   };
 
-  return (
-    <main className="bg-gray-900 text-white">
-      <div className="min-h-screen justify-center container flex flex-col gap-4 items-center">
-        <h2 className="mb-4 text-2xl font-semibold">Login</h2>
+  useEffect(() => {
+    setError("");
+  }, [email, password]);
 
-        {error && <p className="text-red-400">{error}</p>}
+  return (
+    <main className="bg-linear-to-br from-gray-800 to-secondary/10 text-white">
+      <div className="min-h-screen justify-center container flex flex-col gap-4 items-center">
+        <h2 className="mb-4 font-semibold">Login</h2>
 
         <form
-          className="px-2 flex flex-col gap-2 w-full max-w-md"
+          className="px-2 flex flex-col gap-1 w-full max-w-md"
           onSubmit={onSubmit}
         >
           <Input
@@ -66,6 +78,7 @@ export default function Login() {
             placeholder="Email..."
             required
             value={email}
+            className="rounded-md px-5 py-3"
             onChange={(e) => setEmail(e.target.value)}
           />
 
@@ -74,10 +87,17 @@ export default function Login() {
             placeholder="Password..."
             required
             value={password}
+            className="rounded-md px-5 py-3"
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Button type="submit" disabled={loading}>
+          {error && <p className="bg-red-900 p-4 rounded-md my-1">{error}</p>}
+
+          <Button
+            type="submit"
+            disabled={loading}
+            className="mt-2 w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 rounded-lg transition-all duration-200"
+          >
             {loading ? "Logging in..." : "Login"}
           </Button>
         </form>

@@ -28,12 +28,13 @@ router.get("/", auth("owner", "admin"), async (req, res) => {
  * Create new admin (owner only)
  */
 router.post("/", auth("owner"), async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   const hashed = await bcrypt.hash(password, 10);
 
   await db.insert(users).values({
     email,
+    name,
     password: hashed,
     role: "admin",
   });

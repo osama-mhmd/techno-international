@@ -3,6 +3,7 @@ import db, { users } from "../db";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { auth } from "../middlewares/auth";
 
 const router = Router();
 
@@ -23,7 +24,7 @@ router.post("/login", async (req, res) => {
   }
 
   const token = jwt.sign(
-    { id: user.id, role: user.role },
+    { id: user.id, name: user.name, role: user.role },
     process.env.JWTSECRET!,
     {
       expiresIn: "7d",
@@ -31,6 +32,13 @@ router.post("/login", async (req, res) => {
   );
 
   res.json({ token });
+});
+
+router.get("/me", auth("owner", "admin"), async (req, res) => {
+  res.json({
+    name: req.user!.name,
+    role: req.user!.role,
+  });
 });
 
 export default router;

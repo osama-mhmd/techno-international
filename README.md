@@ -4,7 +4,7 @@
 
 ## Introduction
 
-My name is Osama Mohammed, and this is the technical assessment for joining **EngTechno**. This project was built according to the Figma design provided, and it includes an Admin Dashboard/Panel available at: **[Admin Panel](https://techno-international.vercel.app)**
+My name is Osama Mohammed, and this is the technical assessment for joining **EngTechno**. This project was built according to the Figma design provided, and it includes an Admin Panel available at: **[Admin Panel](https://techno-international.vercel.app/panel)** to almost manage all the content of the website.
 
 Both the frontend and backend are deployed on Vercel. (Why Vercel? See the [Development](#development) section.)
 
@@ -12,17 +12,14 @@ Both the frontend and backend are deployed on Vercel. (Why Vercel? See the [Deve
 
 The main features of the app:
 
-- **Pixel-perfect design** matching the provided Figma.
-- **Accessibility**: The website is accessible for people with disabilities (keyboard navigation implemented) and works across all device sizes. I changed the behaviour for some sections like the services section (becomes a column on small screens).
+- **Pixel-perfect design** matching the provided Figma design.
+- **Accessibility**: The website is accessible for people with disabilities (keyboard navigation implemented) and works across all device sizes.
 - **Admin panel**: A secure admin panel that makes the website’s content highly customizable.
 
 Potential improvements if more time were available (i.e., regarding scalability):
 
-- **Stateful authentication**:  
-  I would not rely solely on JWT. I would introduce a `sessions` table to support stateful authentication.  
-  [More about Stateful vs Stateless Authentication](https://medium.com/@kennch/stateful-and-stateless-authentication-10aa3e3d4986).
-- **Normalize the schema**:  
-  The current `pages` table can be split into more meaningful tables.
+- **Stateful authentication**: I would not rely solely on JWT. I would introduce a `sessions` table to support stateful authentication. [More about Stateful vs Stateless Authentication](https://medium.com/@kennch/stateful-and-stateless-authentication-10aa3e3d4986).
+- **Normalize the database**: The current `pages` table can be split into more meaningful tables.
 
 ## Getting Started
 
@@ -50,13 +47,12 @@ Potential improvements if more time were available (i.e., regarding scalability)
 Here are the tools I used and why:
 
 - **Turborepo**: Not strictly needed in this project since there are no shared libraries, but it does help keep the structure organized.
-- **Next.js**: If not required, I would prefer using React alone because Next.js consumes more memory during development (which can increase hosting costs). Also, most components are client components, so the SEO benefits were minimal.
+- **Next.js**: If not required, I would prefer using React alone because Next.js consumes more memory (which can increase hosting costs). Also, most components are client components, so the SEO benefits were minimal.
 - **Express.js**: If not required, I would choose NestJS for better type safety and more coherent architecture.
 - **Drizzle ORM**: Faster than Prisma and I’m already familiar with it.
 - **PostgreSQL**
 - **JSON Web Token (JWT)**
-- **Vercel**:  
-  Chosen because it simplifies deployment significantly.
+- **Vercel**: Chosen because it simplifies deployment significantly.
 
 ## Project Structure
 

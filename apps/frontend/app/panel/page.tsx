@@ -344,7 +344,7 @@ export default function PanelContentEditor() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:4000/auth/me", {
+    fetch(`${process.env.DATABASE_URL}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` },
     }).then(async (res) => {
       if (res.ok) {
@@ -397,7 +397,7 @@ export default function PanelContentEditor() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch(`http://localhost:4000/pages/${page}`, {
+      const res = await fetch(`${process.env.DATABASE_URL}/pages/${page}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

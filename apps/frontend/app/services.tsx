@@ -51,7 +51,7 @@ function Service({
         backgroundImage: `url(/services-${title}.png)`,
       }}
       className={cn(
-        `grid grid-rows-[auto_1fr] p-9 bg-black/35 bg-blend-multiply bg-cover bg-center`,
+        `grid grid-rows-[auto_1fr] p-3 xs:p-9 bg-black/35 bg-blend-multiply bg-cover bg-center`,
         className
       )}
     >

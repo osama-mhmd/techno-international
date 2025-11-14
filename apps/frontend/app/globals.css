@@ -83,4 +83,5 @@
   --color-secondary: #c3996c;
   --color-muted: #808285;
   --font-oswald: var(--font-oswald);
+  --breakpoint-xs: 28rem;
 }

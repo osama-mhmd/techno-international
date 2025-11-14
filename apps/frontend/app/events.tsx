@@ -53,7 +53,7 @@ export default function Events() {
       <SlideFade>
         <div className="container px-8 pb-44">
           <hr />
-          <div className="flex pt-16 gap-4 font-oswald">
+          <div className="flex flex-col xs:flex-row pt-16 gap-4 font-oswald">
             <Image
               width={182}
               height={182}
@@ -63,10 +63,10 @@ export default function Events() {
             />
             <div>
               <p className="text-xl">LEADING THE FUTURE OF DEFENSE</p>
-              <p className="text-6xl sm:text-8xl mt-8">AT EDEX 2025.</p>
+              <p className="text-6xl sm:text-8xl xs:mt-8">AT EDEX 2025.</p>
             </div>
           </div>
-          <p className="text-4xl font-medium py-10 max-w-6xl">
+          <p className="text-2xl xs:text-4xl font-medium py-10 max-w-6xl">
             This year, Techno proudly joins the region’s most influential
             defense exhibition — EDEX 2025 — as a headline sponsor and strategic
             partner. Across a commanding presence of over 1,400 sqm, we unveil

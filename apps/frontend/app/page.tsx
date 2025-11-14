@@ -22,8 +22,8 @@ export default function Home() {
               DEFENSE & SECURITY SOLUTIONS
             </h1>
           </SlideFade>
-          <div className="text-2xl max-w-[40ch]">
-            {isLoading && <Skeleton className="w-96 h-12" />}
+          <div className="text-2xl w-full max-w-[40ch]">
+            {isLoading && <Skeleton className="w-full h-12" />}
             {content("landing_view", "description")}
           </div>
           <Button className="mt-4" arrow="has">
@@ -57,8 +57,8 @@ export default function Home() {
         </div>
       </div>
       <Services content={content} />
-      <div className="px-14 py-14 bg-[url(/search.png)] bg-cover bg-center">
-        <div className="flex justify-between">
+      <div className="p-6 xs:p-14 bg-[url(/search.png)] bg-cover bg-center">
+        <div className="flex flex-col gap-y-6 xs:flex-row justify-between">
           <div>
             <h1>
               Search the

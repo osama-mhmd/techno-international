@@ -26,7 +26,7 @@ export default function AboutUs() {
           <p className="text-3xl font-medium mt-5 max-w-3xl">
             {content("team", "description")}
           </p>
-          <div className="grid md:grid-cols-2 mt-24 gap-6">
+          <div className="grid md:grid-cols-2 md:mt-24 gap-6">
             <div>
               <div className="w-full max-w-2xl h-132 lg:h-192 relative bg-[url(/flag.png)] bg-no-repeat bg-bottom bg-size-[175%] md:bg-size-[225%]"></div>
             </div>

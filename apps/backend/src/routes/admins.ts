@@ -16,9 +16,9 @@ router.get("/", auth("owner", "admin"), async (req, res) => {
       id: users.id,
       email: users.email,
       role: users.role,
+      name: users.name,
     })
-    .from(users)
-    .where(eq(users.role, "admin"));
+    .from(users);
 
   res.json(admins);
 });
@@ -32,14 +32,17 @@ router.post("/", auth("owner"), async (req, res) => {
 
   const hashed = await bcrypt.hash(password, 10);
 
-  await db.insert(users).values({
-    email,
-    name,
-    password: hashed,
-    role: "admin",
-  });
+  const [admin] = await db
+    .insert(users)
+    .values({
+      email,
+      name,
+      password: hashed,
+      role: "admin",
+    })
+    .returning();
 
-  res.json({ message: "Admin created" });
+  res.json(admin);
 });
 
 /**

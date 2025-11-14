@@ -351,6 +351,7 @@ function PageSelection({
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {Object.keys(pages).map((p) => {
+          console.log(pages[p]);
           const Icon = pageIcons[p]!;
           const isSelected = selectedPage === p;
           return (
@@ -380,7 +381,7 @@ function PageSelection({
                   <p
                     className={`text-sm ${isSelected ? "text-purple-100" : "text-gray-400"}`}
                   >
-                    {pages[p]!.length} sections
+                    {Object.keys(pages[p] as object).length} sections
                   </p>
                 </div>
               </div>

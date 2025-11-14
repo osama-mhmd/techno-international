@@ -30,8 +30,7 @@ export type GetSection = (
  */
 export default async function getContent(page: string) {
   // TODO: Enhance the type safety in this function
-  // eslint-disable-next-line turbo/no-undeclared-env-vars
-  const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:4000";
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const url = `${BACKEND_URL}/pages/${page}`;
   const res = await fetch(url);

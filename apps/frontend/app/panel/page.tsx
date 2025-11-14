@@ -344,7 +344,7 @@ export default function PanelContentEditor() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch(`${process.env.DATABASE_URL}/auth/me`, {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` },
     }).then(async (res) => {
       if (res.ok) {
@@ -397,14 +397,17 @@ export default function PanelContentEditor() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch(`${process.env.DATABASE_URL}/pages/${page}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ section, key, value }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/pages/${page}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ section, key, value }),
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to save");
 

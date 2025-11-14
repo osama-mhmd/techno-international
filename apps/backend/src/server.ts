@@ -2,9 +2,17 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import auth from "./routes/auth";
 
 const app = express();
+app.use(express.json());
 
-app.listen(4000, () => {
-  console.log(`Express running on http://localhost:4000`);
+app.use("/auth", auth);
+
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
 });
+
+const PORT = process.env.PORT! || 4000;
+
+app.listen(PORT, () => console.log("Server running on port " + PORT));

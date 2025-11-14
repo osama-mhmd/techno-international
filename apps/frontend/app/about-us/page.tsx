@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "../../components/ui/button";
 import Clients from "./clients";
 import { usePageContent } from "../../hooks/use-page-content";
+import SlideFade from "../../components/slide-fade";
 
 export default function AboutUs() {
   const { content } = usePageContent("about_us");
@@ -82,22 +83,24 @@ export default function AboutUs() {
             negotiable values that define who we are and how we serve.
           </p>
           <div className="flex gap-y-4 justify-between flex-wrap">
-            <CoreValue
-              title="INTEGRITY"
-              description="We uphold the highest ethical standards and ensure full compliance with international regulations."
-            />
-            <CoreValue
-              title="INNOVATION"
-              description="We harness cutting-edge technologies to deliver superior defense capabilities."
-            />
-            <CoreValue
-              title="COMMITMENT"
-              description="We are dedicated to meeting the evolving needs of our partners with professionalism and precision."
-            />
-            <CoreValue
-              title="EXCELLENCE"
-              description="We strive for unmatched quality in every product, service, and collaboration."
-            />
+            <SlideFade>
+              <CoreValue
+                title="INTEGRITY"
+                description="We uphold the highest ethical standards and ensure full compliance with international regulations."
+              />
+              <CoreValue
+                title="INNOVATION"
+                description="We harness cutting-edge technologies to deliver superior defense capabilities."
+              />
+              <CoreValue
+                title="COMMITMENT"
+                description="We are dedicated to meeting the evolving needs of our partners with professionalism and precision."
+              />
+              <CoreValue
+                title="EXCELLENCE"
+                description="We strive for unmatched quality in every product, service, and collaboration."
+              />
+            </SlideFade>
           </div>
         </div>
       </div>
@@ -132,18 +135,20 @@ export default function AboutUs() {
       <div>
         <div className="container px-8 pt-24 pb-64">
           <div className="flex flex-wrap gap-y-8 justify-between gap-4">
-            <div>
-              <h1>
-                COMPLIANCE &<br />
-                QUALITY ASSURANCE
-              </h1>
-              <p className="font-medium text-3xl pt-5 max-w-2xl">
-                We operate with unwavering transparency and accountability.
-                Techno International Group strictly adheres to international
-                arms regulations including ITAR, EAR, and UN export control
-                laws.
-              </p>
-            </div>
+            <SlideFade>
+              <div>
+                <h1>
+                  COMPLIANCE &<br />
+                  QUALITY ASSURANCE
+                </h1>
+                <p className="font-medium text-3xl pt-5 max-w-2xl">
+                  We operate with unwavering transparency and accountability.
+                  Techno International Group strictly adheres to international
+                  arms regulations including ITAR, EAR, and UN export control
+                  laws.
+                </p>
+              </div>
+            </SlideFade>
             <div>
               <Image width={150} height={150} alt="Logo" src="/full-logo.png" />
             </div>
@@ -156,16 +161,18 @@ export default function AboutUs() {
               alt="A photo of a solider explaining the mission for the team"
               src="/compliance-and-quality-assurance.png"
             />
-            <div className="flex flex-col justify-between items-start">
-              <p className="text-3xl pb-4 font-medium">
-                Our products and services meet global military standards such as
-                MIL-STD, STANAG, and GOST, ensuring safety, reliability, and
-                operational excellence. Every solution undergoes rigorous
-                quality assurance processes, guaranteeing that our partners
-                receive only the highest level of performance.
-              </p>
-              <Button variant="outline">Download company profile</Button>
-            </div>
+            <SlideFade>
+              <div className="flex flex-col justify-between items-start">
+                <p className="text-3xl pb-4 font-medium">
+                  Our products and services meet global military standards such
+                  as MIL-STD, STANAG, and GOST, ensuring safety, reliability,
+                  and operational excellence. Every solution undergoes rigorous
+                  quality assurance processes, guaranteeing that our partners
+                  receive only the highest level of performance.
+                </p>
+                <Button variant="outline">Download company profile</Button>
+              </div>
+            </SlideFade>
           </div>
         </div>
       </div>

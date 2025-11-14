@@ -22,11 +22,10 @@ export function usePageContent(page: string) {
     try {
       getContent(page).then((lookupFn) => {
         setContentLookup(() => lookupFn);
+        setIsLoading(false);
       });
     } catch (err) {
       setError(err as Error);
-    } finally {
-      setIsLoading(false);
     }
   }, [page]);
 

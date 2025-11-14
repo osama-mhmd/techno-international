@@ -5,4 +5,4 @@ const db = drizzle(process.env.DATABASE_URL!);
 
 export default db;
 
-export { users } from "./schema";
+export { users, pages } from "./schema";

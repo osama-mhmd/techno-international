@@ -1,11 +1,15 @@
 import ChevronRight from "../components/icons/chevron-right";
+import { GetContent } from "../lib/get-content";
 import { cn } from "../lib/utils";
 
-export default function Services() {
+export default function Services({ content }: { content: GetContent }) {
   return (
     <div className="grid xl:grid-cols-[30%_40%_30%] 2xl:grid-cols-[20%_60%_20%] min-h-screen">
-      <Service title="solutions">
-        <p className="py-4 text-xl">PROVEN POWER. BATTLE-TESTED SOLUTIONS.</p>
+      <Service title={content("services", "service_1_heading") ?? "solutions"}>
+        <p className="py-4 text-xl">
+          {content("services", "service_1_description") ??
+            "PROVEN POWER. BATTLE-TESTED SOLUTIONS."}
+        </p>
         <AirLandSea />
       </Service>
       <Service title="manufacturing" className="bg-right">

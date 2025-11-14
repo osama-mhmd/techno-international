@@ -30,7 +30,6 @@ export function auth(...allowedRoles: UserRole[]) {
 
     try {
       const decoded = jwt.verify(token, process.env.JWTSECRET!) as AuthUser;
-
       req.user = decoded;
 
       if (!allowedRoles) {

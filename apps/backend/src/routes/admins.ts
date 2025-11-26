@@ -32,17 +32,22 @@ router.post("/", auth("owner"), async (req, res) => {
 
   const hashed = await bcrypt.hash(password, 10);
 
-  const [admin] = await db
-    .insert(users)
-    .values({
-      email,
-      name,
-      password: hashed,
-      role: "admin",
-    })
-    .returning();
+  const [user] = await db.select().from(users).where(eq(users.email, email));
 
-  res.json(admin);
+  if (user) {
+    res.status(409).json({
+      message: "This email is already in use.",
+    });
+  }
+
+  await db.insert(users).values({
+    email,
+    name,
+    password: hashed,
+    role: "admin",
+  });
+
+  res.json({ message: "Admin user created successfully." });
 });
 
 /**

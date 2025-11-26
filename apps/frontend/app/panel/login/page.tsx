@@ -13,13 +13,15 @@ export default function Login() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    (async () => {
+      const URI = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`;
 
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
-      headers: { Authorization: `Bearer ${token}` },
-    }).then(async (res) => {
+      const res = await fetch(URI, {
+        credentials: "include",
+      });
+
       if (res.ok) router.push("/panel");
-    });
+    })();
   }, [router]);
 
   const onSubmit = async (ev: React.FormEvent) => {
@@ -35,6 +37,7 @@ export default function Login() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
+          credentials: "include",
         }
       );
 

@@ -14,24 +14,38 @@ router.post("/login", async (req, res) => {
   const [user] = await db.select().from(users).where(eq(users.email, email));
 
   if (!user) {
-    return res.status(401).json({ message: "Invalid credentials" });
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid credentials" });
   }
 
   const valid = await bcrypt.compare(password, user.password);
 
   if (!valid) {
-    return res.status(401).json({ message: "Invalid credentials" });
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid credentials" });
   }
 
   const token = jwt.sign(
     { id: user.id, name: user.name, role: user.role },
     process.env.JWTSECRET!,
     {
-      expiresIn: "7d",
+      expiresIn: "1d",
     }
   );
 
-  res.json({ token });
+  res.cookie("auth_token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+
+  res
+    .status(200)
+    .json({ success: true, message: "User logged in successfully." });
 });
 
 router.get("/me", auth("owner", "admin"), async (req, res) => {

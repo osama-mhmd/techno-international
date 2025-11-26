@@ -582,10 +582,8 @@ export default function PanelContentEditor() {
 
   // Load user
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
-      headers: { Authorization: `Bearer ${token}` },
+      credentials: "include",
     }).then(async (res) => {
       if (res.ok) {
         const userData = await res.json();

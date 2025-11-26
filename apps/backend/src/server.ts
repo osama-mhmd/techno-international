@@ -6,11 +6,15 @@ import auth from "./routes/auth";
 import admins from "./routes/admins";
 import pages from "./routes/pages";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
+const FRONTEND_URL = process.env.FRONTEND_URL ?? "http://localhost:3000";
+
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: FRONTEND_URL, credentials: true }));
+app.use(cookieParser());
 app.use("/auth", auth);
 app.use("/admins", admins);
 app.use("/pages", pages);

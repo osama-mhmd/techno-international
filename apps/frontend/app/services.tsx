@@ -1,35 +1,55 @@
 import ChevronRight from "../components/icons/chevron-right";
+import { Skeleton } from "../components/ui/skeleton";
 import { GetContent } from "../lib/get-content";
 import { cn } from "../lib/utils";
 
-export default function Services({ content }: { content: GetContent }) {
+export default function Services({
+  content,
+  isLoading,
+}: {
+  content: GetContent;
+  isLoading: boolean;
+}) {
   return (
     <div className="grid xl:grid-cols-[30%_40%_30%] 2xl:grid-cols-[20%_60%_20%] min-h-screen">
-      <Service title={content("services", "service_1_heading") ?? "solutions"}>
-        <p className="py-4 text-xl">
-          {content("services", "service_1_description") ??
-            "PROVEN POWER. BATTLE-TESTED SOLUTIONS."}
-        </p>
+      <Service
+        title={content("services", "service_1_heading")}
+        isLoading={isLoading}
+        imgUrl={"solutions"}
+      >
+        <div className="py-4 text-xl">
+          {isLoading && <Skeleton className="w-fulll h-12" />}
+          {content("services", "service_1_description")}
+        </div>
         <AirLandSea />
       </Service>
-      <Service title="manufacturing" className="bg-right">
+      <Service
+        title={content("services", "service_2_heading")}
+        imgUrl="manufacturing"
+        className="bg-right"
+        isLoading={isLoading}
+      >
         <div className="h-full flex flex-col justify-end py-16 gap-6">
           <AirLandSea />
-          <p className="text-4xl font-medium">
-            BUILT FROM PRECISION. <br />
-            FORGED FOR PERFORMANCE.
-          </p>
-          <p className="text-[1.35rem] font-medium leading-6 max-w-prose">
-            Techno Logistics ensures that every mission moves without
-            hesitation. Through seamless coordination, global reach, and
-            military-grade efficiency, we deliver equipment, maintenance, and
-            support — wherever the mission demands. From the factory floor to
-            the frontline, we make readiness a constant.
-          </p>
+          <div className="text-4xl font-medium max-w-[24ch]">
+            {isLoading && <Skeleton className="w-fulll h-12" />}
+            {content("services", "service_2_description")}
+          </div>
+          <div className="text-[1.35rem] font-medium leading-6 max-w-prose">
+            {isLoading && <Skeleton className="w-fulll h-36" />}
+            {content("services", "service_2_content")}
+          </div>
         </div>
       </Service>
-      <Service title="logistics">
-        <p className="py-4 text-xl">ENGINEERED FOR UNINTERRUPTED SUPPLY.</p>
+      <Service
+        title={content("services", "service_3_heading")}
+        imgUrl="logistics"
+        isLoading={isLoading}
+      >
+        <div className="py-4 text-xl">
+          {isLoading && <Skeleton className="w-fulll h-12" />}
+          {content("services", "service_3_description")}
+        </div>
         <AirLandSea />
       </Service>
     </div>
@@ -40,22 +60,26 @@ function Service({
   title,
   children,
   className,
+  imgUrl,
+  isLoading,
 }: {
   title: string;
   children?: React.ReactNode;
   className?: string;
+  imgUrl: string;
+  isLoading?: boolean;
 }) {
   return (
     <div
       style={{
-        backgroundImage: `url(/services-${title}.png)`,
+        backgroundImage: `url(/services-${imgUrl}.png)`,
       }}
       className={cn(
-        `grid grid-rows-[auto_1fr] p-9 bg-black/35 bg-blend-multiply bg-cover bg-center`,
+        `grid grid-rows-[auto_1fr] p-3 xs:p-9 bg-black/35 bg-blend-multiply bg-cover bg-center`,
         className
       )}
     >
-      <ServiceHeader title={title} />
+      <ServiceHeader isLoading={isLoading} title={title} />
       <div className="flex flex-col h-162 sm:h-132 xl:h-auto">
         <div className="h-full">{children}</div>
         <ServiceExpolre />
@@ -64,11 +88,20 @@ function Service({
   );
 }
 
-function ServiceHeader({ title }: { title: string }) {
+function ServiceHeader({
+  title,
+  isLoading,
+}: {
+  title: string;
+  isLoading?: boolean;
+}) {
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <h2 className="font-bold">{title}</h2>
+        <h2 className="font-bold">
+          {title}
+          {isLoading && <Skeleton className="w-36 h-12" />}
+        </h2>
         <ChevronRight size={50} />
       </div>
       <hr />

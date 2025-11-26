@@ -22,39 +22,37 @@ declare global {
 
 export function auth(...allowedRoles: UserRole[]) {
   return async (req: Request, res: Response, next: NextFunction) => {
-    const header = req.headers.authorization;
+    const token = req.cookies.auth_token;
 
-    if (!header) {
+    if (!token) {
       return res.status(401).json({ message: "No token provided" });
     }
-
-    const token = header.split(" ")[1];
 
     try {
       const decoded = jwt.verify(token, process.env.JWTSECRET!) as AuthUser;
 
       const [user] = await db
-        .select()
+        .select({
+          id: users.id,
+          name: users.name,
+          role: users.role,
+        })
         .from(users)
         .where(eq(users.id, decoded.id));
 
       if (!user) throw new Error("User not found");
 
-      req.user = decoded;
+      req.user = user;
 
-      if (!allowedRoles) {
-        return next();
-      }
+      if (allowedRoles.length === 0) return next();
 
       if (!allowedRoles.includes(decoded.role)) {
         return res.status(403).json({ message: "Forbidden" });
       }
 
       next();
-    } catch (error) {
-      return res
-        .status(401)
-        .json({ message: "Invalid or expired token", error });
+    } catch (_) {
+      return res.status(401).json({ message: "Invalid or expired token" });
     }
   };
 }
